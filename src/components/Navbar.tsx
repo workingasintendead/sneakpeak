@@ -13,26 +13,25 @@ const Navbar: React.FC = () => {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <nav className="bg-gray-900 p-4">
+    <nav className="bg-gray-900 p-4 relative">
       <div className="container mx-auto flex items-center justify-between">
         <Logo />
         <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
           <DesktopMenu />
         </div>
-        <div className="flex items-center space-x-4 text-white">
+        <div className="space-x-4 md:flex md:items-center md:ml-auto md:w-auto w-full flex justify-center items-center">
           <SearchBar />
           <CartButton />
         </div>
-        <div className="md:hidden flex items-center">
+        <div className="md:hidden flex items-center ml-auto">
           <button onClick={toggleMobileMenu} className="text-white">
-            <i className="material-icons">
-              {isMobileMenuOpen ? 'close' : 'menu'}
-            </i>
+            <i className="material-icons">menu</i>
           </button>
         </div>
       </div>
-
-      <MobileMenu isOpen={isMobileMenuOpen} close={closeMobileMenu} />
+      {isMobileMenuOpen && (
+        <MobileMenu isOpen={isMobileMenuOpen} close={closeMobileMenu} />
+      )}
     </nav>
   );
 };
