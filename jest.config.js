@@ -12,6 +12,6 @@ module.exports = {
   testPathIgnorePatterns: ['<rootDir>/tests/'],
   testMatch: [
     '<rootDir>/src/app/**/*.(test).tsx',
-    '<rootDir>/components/**/*.(test).tsx',
+    '<rootDir>/src/components/**/*.(test).tsx',
   ],
 };
