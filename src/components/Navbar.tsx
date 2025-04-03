@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Logo from './Logo';
 import DesktopMenu from './DesktopMenu';
 import SearchBar from './SearchBar';
@@ -9,12 +9,30 @@ import MobileMenu from './MobileMenu';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="bg-gray-900 p-4 relative">
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto flex items-center justify-between ">
         <Logo />
         <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
           <DesktopMenu />
@@ -29,8 +47,11 @@ const Navbar: React.FC = () => {
           </button>
         </div>
       </div>
+
       {isMobileMenuOpen && (
-        <MobileMenu isOpen={isMobileMenuOpen} close={closeMobileMenu} />
+        <div ref={mobileMenuRef}>
+          <MobileMenu isOpen={isMobileMenuOpen} close={toggleMobileMenu} />
+        </div>
       )}
     </nav>
   );

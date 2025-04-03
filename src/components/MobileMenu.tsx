@@ -1,3 +1,5 @@
+'use client';
+
 import { observer } from 'mobx-react-lite';
 import Link from 'next/link';
 import { edgeConfigStore } from '../stores/edge-config-store';
@@ -24,21 +26,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, close }) => {
     });
   });
 
-  const handleCloseMenu = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
-
   return (
     <div
       className={`md:hidden bg-gray-800 text-white w-80 fixed top-0 right-0 h-screen z-50 transform transition-transform ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
-      onClick={close}
     >
-      <div
-        className="h-full overflow-y-auto ps-4 bg-gray-800 custom-scrollbar"
-        onClick={handleCloseMenu}
-      >
+      <div className="h-full overflow-y-auto ps-4 bg-gray-800 custom-scrollbar">
         <button
           onClick={close}
           className="text-white text-2xl fixed top-7.5 right-4 z-50"
