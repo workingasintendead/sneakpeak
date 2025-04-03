@@ -6,7 +6,7 @@ type SiteData = {
   categories?: Record<string, Category>;
 };
 
-export async function getConfigData(request: Request) {
+export async function GET(request: Request) {
   const url = new URL(request.url);
   const site = url.searchParams.get('site') || 'sneakpeak';
 
