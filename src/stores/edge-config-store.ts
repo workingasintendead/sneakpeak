@@ -14,6 +14,7 @@ class EdgeConfigStore {
   configData: ConfigData | null = null;
   isLoading: boolean = true;
   error: boolean = false;
+  uniqueBrands: Set<string> = new Set();
 
   constructor() {
     makeAutoObservable(this);
@@ -22,11 +23,23 @@ class EdgeConfigStore {
   setConfigData(data: ConfigData) {
     this.configData = data;
     this.isLoading = false;
+    this.setUniqueBrands();
   }
 
   setError() {
     this.error = true;
     this.isLoading = false;
+  }
+
+  setUniqueBrands() {
+    const newUniqueBrands = new Set<string>();
+    Object.keys(this.configData?.categories || {}).forEach((categoryKey) => {
+      const category = this.configData?.categories[categoryKey];
+      category?.brands.forEach((brand) => {
+        newUniqueBrands.add(brand);
+      });
+    });
+    this.uniqueBrands = newUniqueBrands;
   }
 
   fetchConfigData = async () => {

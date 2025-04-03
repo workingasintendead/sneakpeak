@@ -17,18 +17,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, close }) => {
   }
 
   const categories = configData.categories;
-
-  const uniqueBrands = new Set<string>();
-  Object.keys(categories).forEach((categoryKey) => {
-    const category = categories[categoryKey];
-    category.brands.forEach((brand) => {
-      uniqueBrands.add(brand);
-    });
-  });
+  const uniqueBrands = edgeConfigStore.uniqueBrands;
 
   return (
     <div
-      className={`md:hidden bg-gray-800 text-white w-80 fixed top-0 right-0 h-screen z-50 transform transition-transform ${
+      className={`md:hidden bg-gray-800 text-white w-80 fixed top-0 right-0 h-screen z-50 transform transition-transform duration-1000 ease-in-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
@@ -44,23 +37,23 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, close }) => {
           {['men', 'women', 'kids'].map((categoryKey) => {
             const category = categories[categoryKey];
 
-            if (!category) return null;
-
             return (
-              <div key={categoryKey}>
-                <Link href={`/${categoryKey}`} className="block py-2">
-                  {category.title}
-                </Link>
-                {category.styles.map((style) => (
-                  <Link
-                    key={style}
-                    href={`/${categoryKey}/styles/${style.toLowerCase()}`}
-                    className="block py-2 pl-6"
-                  >
-                    {style}
+              category && (
+                <div key={categoryKey}>
+                  <Link href={`/${categoryKey}`} className="block py-2">
+                    {category.title}
                   </Link>
-                ))}
-              </div>
+                  {category.styles.map((style) => (
+                    <Link
+                      key={style}
+                      href={`/${categoryKey}/styles/${style.toLowerCase()}`}
+                      className="block py-2 pl-6"
+                    >
+                      {style}
+                    </Link>
+                  ))}
+                </div>
+              )
             );
           })}
 
