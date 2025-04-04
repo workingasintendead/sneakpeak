@@ -15,9 +15,11 @@ const DesktopMenu: React.FC = observer(() => {
 
           return (
             <div key={categoryKey} className="relative group">
-              <button className="px-4 py-3 text-lg block after-line font-semibold">
-                {categoryKey}
-              </button>
+              <Link href={`/${categoryKey.toLowerCase()}`}>
+                <button className="px-4 py-3 text-lg block after-line font-semibold cursor-pointer">
+                  {categoryKey}
+                </button>
+              </Link>
 
               {category && (
                 <div className="absolute left-0 hidden mt-0 space-y-2 bg-gray-800 text-white group-hover:block group-focus-within:block hover:block transition-all duration-3000 ease-in-out">
