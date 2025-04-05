@@ -3,6 +3,7 @@
     "target": "esnext",
     "lib": ["dom", "esnext"],
     "jsx": "preserve",
+    "types": ["jest", "@testing-library/jest-dom"],
     "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,

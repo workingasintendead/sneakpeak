@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef } from 'react';
-import Logo from './Logo';
+import Logo from '../Logo';
 import DesktopMenu from './DesktopMenu';
 import SearchBar from './SearchBar';
 import CartButton from './CartButton';

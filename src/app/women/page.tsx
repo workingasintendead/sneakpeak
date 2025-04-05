@@ -1,18 +1,7 @@
-import Navbar from '../../components/Navbar';
-import ShoeGrid from '../../components/ShoeGrid';
-import { shoes } from './MockData';
+import ProductPage from '../../components/ProductPages/ProductPage';
+
 const Women = () => {
-  return (
-    <div>
-      <Navbar />
-      <header className="text-center my-4">
-        <h1 className="text-white text-3xl font-semibold">
-          Women&apos;s Shoes
-        </h1>
-      </header>
-      <ShoeGrid shoes={shoes} />
-    </div>
-  );
+  return <ProductPage category="women" />;
 };
 
 export default Women;
