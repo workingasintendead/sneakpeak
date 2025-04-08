@@ -16,17 +16,13 @@ const ProductPage = ({ category }: ProductPageProps) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchShoes = () => {
-      setLoading(true);
-      setTimeout(() => {
-        const fetchedShoes = mockData[category];
-        setShoes(fetchedShoes);
-        setLoading(false);
-      }, 200);
-    };
-
-    fetchShoes();
-  });
+    setLoading(true);
+    setTimeout(() => {
+      const fetchedShoes = mockData[category];
+      setShoes(fetchedShoes);
+      setLoading(false);
+    }, 200);
+  }, [category]);
 
   return (
     <>
