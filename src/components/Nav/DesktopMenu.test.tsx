@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import DesktopMenu from './DesktopMenu';
-import { Category } from '../../types/index';
+import '@testing-library/jest-dom';
 
 jest.mock('../../stores/edge-config-store', () => ({
   edgeConfigStore: {
@@ -14,32 +14,16 @@ jest.mock('../../stores/edge-config-store', () => ({
   },
 }));
 
-jest.mock('./DesktopCategory', () => ({
-  __esModule: true,
-  default: ({
-    categoryKey,
-    category,
-  }: {
-    categoryKey: string;
-    category: Category;
-  }) => (
-    <div>
-      <span>{categoryKey}</span>
-      {category && <span>{category.brands.join(', ')}</span>}
-    </div>
-  ),
-}));
-
 describe('DesktopMenu', () => {
-  test('renders components for Men, Women, and Kids categories', () => {
+  test('displays Men, Women, and Kids categories', () => {
     render(<DesktopMenu />);
 
-    expect(screen.getByText('men')).toBeInTheDocument();
-    expect(screen.getByText('women')).toBeInTheDocument();
-    expect(screen.getByText('kids')).toBeInTheDocument();
+    expect(screen.getByText('Men')).toBeInTheDocument();
+    expect(screen.getByText('Women')).toBeInTheDocument();
+    expect(screen.getByText('Kids')).toBeInTheDocument();
   });
 
-  test('passes the correct props to components', () => {
+  test('displays all menu categories', () => {
     render(<DesktopMenu />);
 
     expect(screen.getByText('Nike')).toBeInTheDocument();

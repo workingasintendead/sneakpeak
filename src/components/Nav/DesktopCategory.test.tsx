@@ -9,6 +9,7 @@ jest.mock('./DesktopDropdown', () => ({
 
 describe('DesktopCategory', () => {
   const mockCategory = {
+    title: 'Men',
     brands: ['Nike', 'Reebok'],
     styles: ['Basketball', 'Streetwear'],
   };

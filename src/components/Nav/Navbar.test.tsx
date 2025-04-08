@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Navbar from './Navbar';
 import '@testing-library/jest-dom';
 
@@ -11,8 +11,7 @@ jest.mock('./MobileMenu', () => {
     close: () => void;
   }) => (
     <div data-testid="mobile-menu" className={isOpen ? 'open' : 'closed'}>
-      MobileMenu
-      <button onClick={close}>Close Menu</button>
+      {isOpen && <button onClick={close}>Close Menu</button>}
     </div>
   );
   MobileMenu.displayName = 'MobileMenu';
@@ -20,46 +19,39 @@ jest.mock('./MobileMenu', () => {
 });
 
 describe('Navbar', () => {
-  afterEach(cleanup);
-
   it('opens and closes the mobile menu when the menu button is clicked', () => {
     render(<Navbar />);
-
     const menuButton = screen.getByText('menu');
-    const mobileMenu = screen.getByTestId('mobile-menu');
-
-    expect(mobileMenu).toHaveClass('closed');
+    expect(screen.queryByText('Close Menu')).not.toBeInTheDocument();
 
     fireEvent.click(menuButton);
-    expect(mobileMenu).toHaveClass('open');
+    expect(screen.getByText('Close Menu')).toBeInTheDocument();
 
     fireEvent.click(menuButton);
-    expect(mobileMenu).toHaveClass('closed');
+    expect(screen.queryByText('Close Menu')).not.toBeInTheDocument();
   });
 
   it('closes the mobile menu when clicking outside', () => {
     render(<Navbar />);
 
     const menuButton = screen.getByText('menu');
-    const mobileMenu = screen.getByTestId('mobile-menu');
 
     fireEvent.click(menuButton);
-    expect(mobileMenu).toHaveClass('open');
+    expect(screen.getByText('Close Menu')).toBeInTheDocument();
 
     fireEvent.mouseDown(document);
-    expect(mobileMenu).toHaveClass('closed');
+    expect(screen.queryByText('Close Menu')).not.toBeInTheDocument();
   });
 
   it('closes the mobile menu when the close button inside the menu is clicked', () => {
     render(<Navbar />);
 
     const menuButton = screen.getByText('menu');
-    const mobileMenu = screen.getByTestId('mobile-menu');
 
     fireEvent.click(menuButton);
-    expect(mobileMenu).toHaveClass('open');
+    expect(screen.getByText('Close Menu')).toBeInTheDocument();
 
     fireEvent.click(screen.getByText('Close Menu'));
-    expect(mobileMenu).toHaveClass('closed');
+    expect(screen.queryByText('Close Menu')).not.toBeInTheDocument();
   });
 });
