@@ -3,37 +3,7 @@ import MobileMenu from './MobileMenu';
 import { edgeConfigStore } from '../../stores/edge-config-store';
 import '@testing-library/jest-dom';
 
-jest.mock('../../stores/edge-config-store', () => ({
-  edgeConfigStore: {
-    configData: {
-      categories: {
-        men: {
-          title: 'Men',
-          brands: ['Nike', 'Adidas'],
-          styles: ['Sport', 'Crosstraining'],
-        },
-        women: {
-          title: 'Women',
-          brands: ['Puma', 'Reebok'],
-          styles: ['Elegant', 'Designer'],
-        },
-        kids: {
-          title: 'Kids',
-          brands: ['New Balance', 'Converse'],
-          styles: ['Play', 'Casual'],
-        },
-      },
-    },
-    uniqueBrands: [
-      'Nike',
-      'Adidas',
-      'Puma',
-      'Reebok',
-      'New Balance',
-      'Converse',
-    ],
-  },
-}));
+jest.mock('../../stores/edge-config-store');
 
 describe('MobileMenu', () => {
   const closeMock = jest.fn();

@@ -1,8 +1,8 @@
 import ProductPage from '../../components/ProductPages/ProductPage';
-import { Category } from '../../types/categories';
+import { AudienceCategory } from '../../types/enumerations';
 
 const WomensPage = () => {
-  return <ProductPage category={Category.Women} />;
+  return <ProductPage category={AudienceCategory.Women} />;
 };
 
 export default WomensPage;

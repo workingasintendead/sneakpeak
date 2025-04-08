@@ -1,4 +1,4 @@
-export enum Category {
+export enum AudienceCategory {
   Men = 'men',
   Women = 'women',
   Kids = 'kids',

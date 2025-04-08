@@ -1,8 +1,8 @@
 import ProductPage from '../../components/ProductPages/ProductPage';
-import { Category } from '../../types/categories';
+import { AudienceCategory } from '../../types/enumerations';
 
 const KidsPage = () => {
-  return <ProductPage category={Category.Kids} />;
+  return <ProductPage category={AudienceCategory.Kids} />;
 };
 
 export default KidsPage;

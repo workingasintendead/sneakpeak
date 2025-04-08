@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { get } from '@vercel/edge-config';
-import { Category } from '../../../types/index';
+import { Category } from '../../../types';
 
 type SiteData = {
   categories?: Record<string, Category>;
