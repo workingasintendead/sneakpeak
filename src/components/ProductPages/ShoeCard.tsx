@@ -68,7 +68,6 @@ const ShoeCard: React.FC<ShoeCardProps> = ({
       />
       <div className="p-4 flex flex-col flex-grow">
         <div className="flex flex-col justify-between h-full">
-          {' '}
           <div>
             <h3 className="text-black text-xl font-semibold">{name}</h3>
             <p className="text-gray-500">{brand}</p>

@@ -1,13 +1,8 @@
 import { makeAutoObservable } from 'mobx';
+import { Category } from '../types/index';
 
-export interface ConfigData {
+interface ConfigData {
   categories: Record<string, Category>;
-}
-
-export interface Category {
-  title: string;
-  brands: string[];
-  styles: string[];
 }
 
 class EdgeConfigStore {

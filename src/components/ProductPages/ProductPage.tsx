@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../Nav/Navbar';
 import ShoeGrid from './ShoeGrid';
-import { mockData, Shoe } from '../../data/MockData';
+import { mockData } from '../../data/MockData';
 import LoadingSpinner from '../LoadingSpinner';
+import { Shoe } from '../../types/index';
 
 interface ProductPageProps {
   category: string;
@@ -15,13 +16,17 @@ const ProductPage = ({ category }: ProductPageProps) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      const fetchedShoes = mockData[category];
-      setShoes(fetchedShoes);
-      setLoading(false);
-    }, 200);
-  }, [category]);
+    const fetchShoes = () => {
+      setLoading(true);
+      setTimeout(() => {
+        const fetchedShoes = mockData[category];
+        setShoes(fetchedShoes);
+        setLoading(false);
+      }, 200);
+    };
+
+    fetchShoes();
+  });
 
   return (
     <>

@@ -1,7 +1,8 @@
 import ProductPage from '../../components/ProductPages/ProductPage';
+import { Category } from '../../types/categories';
 
-const Kids = () => {
-  return <ProductPage category="kids" />;
+const KidsPage = () => {
+  return <ProductPage category={Category.Kids} />;
 };
 
-export default Kids;
+export default KidsPage;

@@ -1,10 +1,6 @@
 import Link from 'next/link';
 import DesktopDropdown from './DesktopDropdown';
-
-export interface Category {
-  brands: string[];
-  styles: string[];
-}
+import { Category } from '../../types/index';
 
 interface DesktopCategoryProps {
   categoryKey: string;
@@ -19,7 +15,7 @@ const DesktopCategory: React.FC<DesktopCategoryProps> = ({
     <div key={categoryKey} className="relative group">
       <Link href={`/${categoryKey.toLowerCase()}`}>
         <button className="px-4 py-3 text-lg block after-line font-semibold cursor-pointer">
-          {categoryKey}
+          {categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)}
         </button>
       </Link>
 

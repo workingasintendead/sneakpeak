@@ -38,28 +38,22 @@ jest.mock('../../stores/edge-config-store', () => ({
 describe('MobileMenu', () => {
   const closeMock = jest.fn();
 
-  it('renders the menu when configData is available', () => {
+  it.each([
+    ['men', 'Men', ['Sport', 'Crosstraining'], ['Nike', 'Adidas']],
+    ['women', 'Women', ['Elegant', 'Designer'], ['Puma', 'Reebok']],
+    ['kids', 'Kids', ['Play', 'Casual'], ['New Balance', 'Converse']],
+  ])('renders the category correctly', (categoryKey, title, styles, brands) => {
     render(<MobileMenu isOpen={true} close={closeMock} />);
 
-    expect(screen.getByText('Men')).toBeInTheDocument();
-    expect(screen.getByText('Sport')).toBeInTheDocument();
-    expect(screen.getByText('Crosstraining')).toBeInTheDocument();
+    expect(screen.getByText(title)).toBeInTheDocument();
 
-    expect(screen.getByText('Women')).toBeInTheDocument();
-    expect(screen.getByText('Elegant')).toBeInTheDocument();
-    expect(screen.getByText('Designer')).toBeInTheDocument();
+    styles.forEach((style) => {
+      expect(screen.getByText(style)).toBeInTheDocument();
+    });
 
-    expect(screen.getByText('Kids')).toBeInTheDocument();
-    expect(screen.getByText('Play')).toBeInTheDocument();
-    expect(screen.getByText('Casual')).toBeInTheDocument();
-
-    expect(screen.getByText('Brands')).toBeInTheDocument();
-    expect(screen.getByText('Nike')).toBeInTheDocument();
-    expect(screen.getByText('Adidas')).toBeInTheDocument();
-    expect(screen.getByText('Puma')).toBeInTheDocument();
-    expect(screen.getByText('Reebok')).toBeInTheDocument();
-    expect(screen.getByText('New Balance')).toBeInTheDocument();
-    expect(screen.getByText('Converse')).toBeInTheDocument();
+    brands.forEach((brand) => {
+      expect(screen.getByText(brand)).toBeInTheDocument();
+    });
   });
 
   it('applies the correct classes based on the isOpen prop', () => {

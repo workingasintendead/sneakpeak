@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import DesktopMenu from './DesktopMenu';
-import { Category } from './DesktopCategory';
+import { Category } from '../../types/index';
 
 jest.mock('../../stores/edge-config-store', () => ({
   edgeConfigStore: {
@@ -34,9 +34,9 @@ describe('DesktopMenu', () => {
   test('renders components for Men, Women, and Kids categories', () => {
     render(<DesktopMenu />);
 
-    expect(screen.getByText('Men')).toBeInTheDocument();
-    expect(screen.getByText('Women')).toBeInTheDocument();
-    expect(screen.getByText('Kids')).toBeInTheDocument();
+    expect(screen.getByText('men')).toBeInTheDocument();
+    expect(screen.getByText('women')).toBeInTheDocument();
+    expect(screen.getByText('kids')).toBeInTheDocument();
   });
 
   test('passes the correct props to components', () => {
