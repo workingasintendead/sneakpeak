@@ -30,7 +30,7 @@ class EdgeConfigStore {
     const newUniqueBrands = new Set<string>();
     Object.keys(this.configData?.categories || {}).forEach((categoryKey) => {
       const category = this.configData?.categories[categoryKey];
-      category?.brands.forEach((brand) => {
+      category?.shoebrands.forEach((brand) => {
         newUniqueBrands.add(brand);
       });
     });

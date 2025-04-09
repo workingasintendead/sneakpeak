@@ -1,7 +1,7 @@
 export interface Category {
   title: string;
-  brands: string[];
-  styles: string[];
+  shoebrands: string[];
+  shoestyles: string[];
 }
 
 export interface Shoe {

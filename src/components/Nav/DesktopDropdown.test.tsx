@@ -4,8 +4,9 @@ import '@testing-library/jest-dom';
 
 describe('DesktopDropdown', () => {
   const mockCategory = {
-    brands: ['Nike', 'Reebok'],
-    styles: ['Basketball', 'Streetwear'],
+    title: 'Men',
+    shoebrands: ['Nike', 'Reebok'],
+    shoestyles: ['Basketball', 'Streetwear'],
   };
 
   const categoryKey = 'men';
@@ -55,7 +56,11 @@ describe('DesktopDropdown', () => {
   });
 
   test('does not render the Brands section when there are no brands', () => {
-    const emptyCategory = { brands: [], styles: ['Basketball', 'Streetwear'] };
+    const emptyCategory = {
+      title: 'Men',
+      shoebrands: [],
+      shoestyles: ['Basketball', 'Streetwear'],
+    };
     render(
       <DesktopDropdown categoryKey={categoryKey} category={emptyCategory} />
     );
@@ -64,7 +69,11 @@ describe('DesktopDropdown', () => {
   });
 
   test('does not render the Styles section when there are no styles', () => {
-    const emptyCategory = { brands: ['Nike'], styles: [] };
+    const emptyCategory = {
+      title: 'Men',
+      shoebrands: ['Nike'],
+      shoestyles: [],
+    };
     render(
       <DesktopDropdown categoryKey={categoryKey} category={emptyCategory} />
     );

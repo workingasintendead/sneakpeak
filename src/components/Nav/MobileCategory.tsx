@@ -2,20 +2,20 @@ import Link from 'next/link';
 
 interface MobileCategoryProps {
   title: string;
-  styles: string[];
+  shoestyles: string[];
   categoryKey: string;
 }
 
 const MobileCategory: React.FC<MobileCategoryProps> = ({
   title,
-  styles,
+  shoestyles,
   categoryKey,
 }) => (
   <div>
     <Link href={`/${categoryKey}`} className="block py-2">
       {title}
     </Link>
-    {styles.map((style) => (
+    {shoestyles.map((style) => (
       <Link
         key={style}
         href={`/${categoryKey}/styles/${style.toLowerCase()}`}

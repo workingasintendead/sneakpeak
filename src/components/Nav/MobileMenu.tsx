@@ -39,7 +39,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, close }) => {
               <MobileCategory
                 key={categoryKey}
                 title={categories[categoryKey].title}
-                styles={categories[categoryKey].styles}
+                shoestyles={categories[categoryKey].shoestyles}
                 categoryKey={categoryKey}
               />
             ))}

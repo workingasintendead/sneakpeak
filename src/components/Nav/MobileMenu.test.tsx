@@ -12,19 +12,22 @@ describe('MobileMenu', () => {
     ['men', 'Men', ['Sport', 'Crosstraining'], ['Nike', 'Adidas']],
     ['women', 'Women', ['Elegant', 'Designer'], ['Puma', 'Reebok']],
     ['kids', 'Kids', ['Play', 'Casual'], ['New Balance', 'Converse']],
-  ])('renders the category correctly', (categoryKey, title, styles, brands) => {
-    render(<MobileMenu isOpen={true} close={closeMock} />);
+  ])(
+    'renders the category correctly',
+    (categoryKey, title, shoestyles, shoebrands) => {
+      render(<MobileMenu isOpen={true} close={closeMock} />);
 
-    expect(screen.getByText(title)).toBeInTheDocument();
+      expect(screen.getByText(title)).toBeInTheDocument();
 
-    styles.forEach((style) => {
-      expect(screen.getByText(style)).toBeInTheDocument();
-    });
+      shoestyles.forEach((style) => {
+        expect(screen.getByText(style)).toBeInTheDocument();
+      });
 
-    brands.forEach((brand) => {
-      expect(screen.getByText(brand)).toBeInTheDocument();
-    });
-  });
+      shoebrands.forEach((brand) => {
+        expect(screen.getByText(brand)).toBeInTheDocument();
+      });
+    }
+  );
 
   it('applies the correct classes based on the isOpen prop', () => {
     const { rerender } = render(<MobileMenu isOpen={true} close={closeMock} />);

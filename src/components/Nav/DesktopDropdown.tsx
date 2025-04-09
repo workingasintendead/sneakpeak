@@ -1,9 +1,5 @@
 import Link from 'next/link';
-
-interface Category {
-  brands: string[];
-  styles: string[];
-}
+import { Category } from '../../types';
 
 interface DesktopDropdownProps {
   categoryKey: string;
@@ -16,10 +12,10 @@ const DesktopDropdown: React.FC<DesktopDropdownProps> = ({
 }) => {
   return (
     <div className="absolute left-0 hidden mt-0 space-y-2 bg-gray-800 text-white group-hover:block group-focus-within:block hover:block transition-all duration-3000 ease-in-out">
-      {category.brands.length > 0 && (
+      {category.shoebrands.length > 0 && (
         <div className="px-4 py-1 mt-1">
           <h3 className="font-semibold">Brands</h3>
-          {category.brands.map((brand) => (
+          {category.shoebrands.map((brand) => (
             <Link
               key={brand}
               href={`/${categoryKey.toLowerCase()}/brands/${brand.toLowerCase()}`}
@@ -31,10 +27,10 @@ const DesktopDropdown: React.FC<DesktopDropdownProps> = ({
         </div>
       )}
 
-      {category.styles.length > 0 && (
+      {category.shoestyles.length > 0 && (
         <div className="px-4 py-1">
           <h3 className="font-semibold">Styles</h3>
-          {category.styles.map((style) => (
+          {category.shoestyles.map((style) => (
             <Link
               key={style}
               href={`/${categoryKey.toLowerCase()}/styles/${style.toLowerCase()}`}

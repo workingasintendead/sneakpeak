@@ -3,18 +3,18 @@ export const edgeConfigStore = {
     categories: {
       men: {
         title: 'Men',
-        brands: ['Nike', 'Adidas'],
-        styles: ['Sport', 'Crosstraining'],
+        shoebrands: ['Nike', 'Adidas'],
+        shoestyles: ['Sport', 'Crosstraining'],
       },
       women: {
         title: 'Women',
-        brands: ['Puma', 'Reebok'],
-        styles: ['Elegant', 'Designer'],
+        shoebrands: ['Puma', 'Reebok'],
+        shoestyles: ['Elegant', 'Designer'],
       },
       kids: {
         title: 'Kids',
-        brands: ['New Balance', 'Converse'],
-        styles: ['Play', 'Casual'],
+        shoebrands: ['New Balance', 'Converse'],
+        shoestyles: ['Play', 'Casual'],
       },
     },
   },
