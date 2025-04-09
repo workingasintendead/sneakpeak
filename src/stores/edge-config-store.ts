@@ -1,13 +1,8 @@
 import { makeAutoObservable } from 'mobx';
+import { Category } from '../types/index';
 
-export interface ConfigData {
+interface ConfigData {
   categories: Record<string, Category>;
-}
-
-export interface Category {
-  title: string;
-  brands: string[];
-  styles: string[];
 }
 
 class EdgeConfigStore {
@@ -35,7 +30,7 @@ class EdgeConfigStore {
     const newUniqueBrands = new Set<string>();
     Object.keys(this.configData?.categories || {}).forEach((categoryKey) => {
       const category = this.configData?.categories[categoryKey];
-      category?.brands.forEach((brand) => {
+      category?.shoebrands.forEach((brand) => {
         newUniqueBrands.add(brand);
       });
     });

@@ -9,5 +9,5 @@ test('should navigate to /mens when the logo is clicked', async ({ page }) => {
 
   await logo.click();
 
-  await expect(page).toHaveURL(`${baseUrl}/mens`);
+  await expect(page).toHaveURL(`${baseUrl}/men`);
 });

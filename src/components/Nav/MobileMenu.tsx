@@ -1,8 +1,10 @@
 'use client';
 
 import { observer } from 'mobx-react-lite';
+import { edgeConfigStore } from '../../stores/edge-config-store';
 import Link from 'next/link';
-import { edgeConfigStore } from '../stores/edge-config-store';
+import MobileCategory from './MobileCategory';
+import LoadingSpinner from '../LoadingSpinner';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -12,15 +14,12 @@ interface MobileMenuProps {
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, close }) => {
   const { configData } = edgeConfigStore;
 
-  if (!configData) {
-    return <div>Loading...</div>;
-  }
+  const categories = configData?.categories ?? {};
+  const uniqueBrands = edgeConfigStore.uniqueBrands ?? [];
 
-  const categories = configData.categories;
-  const uniqueBrands = edgeConfigStore.uniqueBrands;
-
-  return (
+  return configData ? (
     <div
+      role="dialog"
       className={`md:hidden bg-gray-800 text-white w-80 fixed top-0 right-0 h-screen z-50 transform transition-transform duration-1000 ease-in-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
@@ -34,28 +33,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, close }) => {
         </button>
 
         <div className="mt-12">
-          {['men', 'women', 'kids'].map((categoryKey) => {
-            const category = categories[categoryKey];
-
-            return (
-              category && (
-                <div key={categoryKey}>
-                  <Link href={`/${categoryKey}`} className="block py-2">
-                    {category.title}
-                  </Link>
-                  {category.styles.map((style) => (
-                    <Link
-                      key={style}
-                      href={`/${categoryKey}/styles/${style.toLowerCase()}`}
-                      className="block py-2 pl-6"
-                    >
-                      {style}
-                    </Link>
-                  ))}
-                </div>
-              )
-            );
-          })}
+          {['men', 'women', 'kids']
+            .filter((categoryKey) => categories[categoryKey])
+            .map((categoryKey) => (
+              <MobileCategory
+                key={categoryKey}
+                title={categories[categoryKey].title}
+                shoestyles={categories[categoryKey].shoestyles}
+                categoryKey={categoryKey}
+              />
+            ))}
 
           <div>
             <Link href="/brands" className="block py-2">
@@ -74,6 +61,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, close }) => {
         </div>
       </div>
     </div>
+  ) : (
+    <LoadingSpinner />
   );
 };
 
