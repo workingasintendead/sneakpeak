@@ -4,10 +4,6 @@ import { cartStore } from '../../stores/cart-store';
 import { Shoe } from '../../types/index';
 
 describe('CartButton', () => {
-  beforeEach(() => {
-    cartStore.clearCart();
-  });
-
   it('button renders', () => {
     render(<CartButton />);
     expect(screen.getByRole('button')).toBeInTheDocument();
@@ -24,7 +20,7 @@ describe('CartButton', () => {
       description: '',
       prices: { Red: 100 },
     };
-
+    expect(screen.queryByText('1')).not.toBeInTheDocument();
     cartStore.addItem(mockShoe, 'Red', '10');
 
     render(<CartButton />);

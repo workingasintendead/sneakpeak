@@ -28,7 +28,6 @@ class EdgeConfigStore {
   setConfigData(data: ConfigData) {
     this.configData = data;
     this.isLoading = false;
-    this.error = false;
   }
 
   setError() {
