@@ -30,6 +30,14 @@ class CartStore {
   getCartItems(): CartItem[] {
     return this.cart;
   }
+
+  get totalItems(): number {
+    return this.cart.length;
+  }
+
+  clearCart() {
+    this.cart = [];
+  }
 }
 
 export const cartStore = new CartStore();
