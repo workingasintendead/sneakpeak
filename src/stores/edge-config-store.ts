@@ -6,19 +6,29 @@ interface ConfigData {
 }
 
 class EdgeConfigStore {
-  configData: ConfigData | null = null;
-  isLoading: boolean = true;
-  error: boolean = false;
-  uniqueBrands: Set<string> = new Set();
+  configData: ConfigData | null;
+  isLoading: boolean;
+  error: boolean;
 
   constructor() {
+    this.configData = null;
+    this.isLoading = true;
+    this.error = false;
     makeAutoObservable(this);
+  }
+
+  get uniqueBrands() {
+    const brands = new Set<string>();
+    Object.values(this.configData?.categories || {}).forEach((category) => {
+      category.shoebrands.forEach((brand) => brands.add(brand));
+    });
+    return brands;
   }
 
   setConfigData(data: ConfigData) {
     this.configData = data;
     this.isLoading = false;
-    this.setUniqueBrands();
+    this.error = false;
   }
 
   setError() {
@@ -26,21 +36,10 @@ class EdgeConfigStore {
     this.isLoading = false;
   }
 
-  setUniqueBrands() {
-    const newUniqueBrands = new Set<string>();
-    Object.keys(this.configData?.categories || {}).forEach((categoryKey) => {
-      const category = this.configData?.categories[categoryKey];
-      category?.shoebrands.forEach((brand) => {
-        newUniqueBrands.add(brand);
-      });
-    });
-    this.uniqueBrands = newUniqueBrands;
-  }
-
   fetchConfigData = async () => {
     try {
       const res = await fetch('/api/edge-config');
-      const data = await res.json();
+      const data = (await res.json()) as ConfigData;
       this.setConfigData(data);
     } catch (error) {
       console.error('Error fetching config:', error);

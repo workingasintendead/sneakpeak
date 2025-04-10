@@ -11,7 +11,7 @@ interface MobileMenuProps {
   close: () => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, close }) => {
+const MobileMenu: React.FC<MobileMenuProps> = observer(({ isOpen, close }) => {
   const { configData } = edgeConfigStore;
 
   const categories = configData?.categories ?? {};
@@ -59,11 +59,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, close }) => {
             ))}
           </div>
         </div>
+        <div>Brands count: {edgeConfigStore.uniqueBrands.size}</div>
       </div>
     </div>
   ) : (
     <LoadingSpinner />
   );
-};
+});
 
-export default observer(MobileMenu);
+export default MobileMenu;
