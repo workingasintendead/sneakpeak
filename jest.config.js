@@ -5,13 +5,13 @@ module.exports = {
     '^.+\\.(ts|tsx)$': ['ts-jest', { tsconfig: './tsconfig.test.json' }],
   },
   moduleFileExtensions: ['js', 'ts', 'tsx', 'json', 'node'],
-  setupFilesAfterEnv: ['@testing-library/jest-dom'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.tsx'],
   transformIgnorePatterns: [
     'node_modules/(?!(@testing-library|some-other-library)/)',
   ],
   testPathIgnorePatterns: ['<rootDir>/tests/'],
   testMatch: [
-    '<rootDir>/src/app/**/*.(test).tsx',
-    '<rootDir>/src/components/**/*.(test).tsx',
+    '<rootDir>/src/app/**/*.test.tsx',
+    '<rootDir>/src/components/**/*.test.tsx',
   ],
 };

@@ -1,11 +1,5 @@
-import { autorun, makeAutoObservable } from 'mobx';
-import { Shoe } from '../types/index';
-
-interface CartItem {
-  shoe: Shoe;
-  selectedSize: string;
-  selectedColor: string;
-}
+import { makeAutoObservable } from 'mobx';
+import { Shoe, CartItem } from '../types/index';
 
 class CartStore {
   cart: CartItem[];
@@ -13,18 +7,11 @@ class CartStore {
   constructor() {
     this.cart = [];
     makeAutoObservable(this);
-    autorun(() => {
-      console.log('Cart updated:', this.cart);
-    });
   }
 
   addItem(shoe: Shoe, selectedColor: string, selectedSize: string) {
-    this.cart.push({ shoe, selectedColor, selectedSize });
-    console.log('Added to cart:', {
-      name: shoe.name,
-      color: selectedColor,
-      size: selectedSize,
-    });
+    const selectedPrice = shoe.prices[selectedColor];
+    this.cart.push({ shoe, selectedColor, selectedSize, selectedPrice });
   }
 
   getCartItems(): CartItem[] {
@@ -35,8 +22,8 @@ class CartStore {
     return this.cart.length;
   }
 
-  clearCart() {
-    this.cart = [];
+  get cartTotal(): number {
+    return this.cart.reduce((sum, item) => sum + item.selectedPrice, 0);
   }
 }
 
