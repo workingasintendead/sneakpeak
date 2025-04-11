@@ -14,3 +14,10 @@ export interface Shoe {
   description: string;
   prices: { [color: string]: number };
 }
+
+export interface CartItem {
+  shoe: Shoe;
+  selectedSize: string;
+  selectedColor: string;
+  selectedPrice: number;
+}

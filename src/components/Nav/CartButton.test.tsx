@@ -4,9 +4,9 @@ import { cartStore } from '../../stores/cart-store';
 import { Shoe } from '../../types/index';
 
 describe('CartButton', () => {
-  it('button renders', () => {
+  it('cart link renders', () => {
     render(<CartButton />);
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByRole('link')).toBeInTheDocument();
   });
 
   it('displays the correct cart count after adding item', () => {

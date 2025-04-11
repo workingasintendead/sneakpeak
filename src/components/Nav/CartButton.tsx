@@ -2,9 +2,10 @@
 
 import { observer } from 'mobx-react-lite';
 import { cartStore } from '../../stores/cart-store';
+import Link from 'next/link';
 
 const CartButton: React.FC = observer(() => (
-  <button className="relative h-10 flex items-center justify-center">
+  <Link href="/cart" className="relative h-10 flex items-center justify-center">
     <i className="material-icons text-white !text-[40px] leading-none">
       shopping_bag
     </i>
@@ -13,7 +14,7 @@ const CartButton: React.FC = observer(() => (
         {cartStore.totalItems}
       </span>
     )}
-  </button>
+  </Link>
 ));
 
 export default CartButton;
