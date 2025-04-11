@@ -1,11 +1,8 @@
-'use client';
-
-import { observer } from 'mobx-react-lite';
 import Navbar from '../../components/Nav/Navbar';
 import CartList from '../../components/Cart/CartList';
 import CartSummary from '../../components/Cart/CartSummary';
 
-const CartPage: React.FC = observer(() => {
+const CartPage: React.FC = () => {
   return (
     <>
       <Navbar />
@@ -19,6 +16,6 @@ const CartPage: React.FC = observer(() => {
       </div>
     </>
   );
-});
+};
 
 export default CartPage;
