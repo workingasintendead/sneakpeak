@@ -59,7 +59,6 @@ const MobileMenu: React.FC<MobileMenuProps> = observer(({ isOpen, close }) => {
             ))}
           </div>
         </div>
-        <div>Brands count: {edgeConfigStore.uniqueBrands.size}</div>
       </div>
     </div>
   ) : (
