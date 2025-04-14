@@ -68,7 +68,7 @@ const ShoeCard: React.FC<ShoeCardProps> = observer(
           prices,
         };
 
-        cartStore.addItem(shoe, activeColor, activeSize);
+        cartStore.increaseQuantity(shoe, activeColor, activeSize, 'add');
 
         if (onAddToCart) {
           onAddToCart(name, activeSize, activeColor, activePrice);

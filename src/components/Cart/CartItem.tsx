@@ -38,7 +38,12 @@ const CartItem: React.FC<Props> = observer(({ item }) => {
         <QuantitySelector
           quantity={quantity}
           onIncrease={() =>
-            cartStore.increaseQuantity(shoe, selectedColor, selectedSize)
+            cartStore.increaseQuantity(
+              shoe,
+              selectedColor,
+              selectedSize,
+              'increase'
+            )
           }
           onDecrease={() =>
             cartStore.decreaseQuantity(shoe, selectedColor, selectedSize)

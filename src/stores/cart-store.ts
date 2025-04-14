@@ -9,29 +9,14 @@ class CartStore {
     makeAutoObservable(this);
   }
 
-  addItem(shoe: Shoe, selectedColor: string, selectedSize: string) {
+  increaseQuantity(
+    shoe: Shoe,
+    selectedColor: string,
+    selectedSize: string,
+    action: 'increase' | 'add'
+  ) {
     const selectedPrice = shoe.prices[selectedColor];
-    const existingItem = this.cart.find(
-      (item) =>
-        item.shoe.name === shoe.name &&
-        item.selectedColor === selectedColor &&
-        item.selectedSize === selectedSize
-    );
 
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      this.cart.push({
-        shoe,
-        selectedColor,
-        selectedSize,
-        selectedPrice,
-        quantity: 1,
-      });
-    }
-  }
-
-  increaseQuantity(shoe: Shoe, selectedColor: string, selectedSize: string) {
     const item = this.cart.find(
       (item) =>
         item.shoe.name === shoe.name &&
@@ -41,6 +26,14 @@ class CartStore {
 
     if (item) {
       item.quantity += 1;
+    } else if (action === 'add') {
+      this.cart.push({
+        shoe,
+        selectedColor,
+        selectedSize,
+        selectedPrice,
+        quantity: 1,
+      });
     }
   }
 
