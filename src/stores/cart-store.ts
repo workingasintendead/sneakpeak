@@ -11,7 +11,54 @@ class CartStore {
 
   addItem(shoe: Shoe, selectedColor: string, selectedSize: string) {
     const selectedPrice = shoe.prices[selectedColor];
-    this.cart.push({ shoe, selectedColor, selectedSize, selectedPrice });
+    const existingItem = this.cart.find(
+      (item) =>
+        item.shoe.name === shoe.name &&
+        item.selectedColor === selectedColor &&
+        item.selectedSize === selectedSize
+    );
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      this.cart.push({
+        shoe,
+        selectedColor,
+        selectedSize,
+        selectedPrice,
+        quantity: 1,
+      });
+    }
+  }
+
+  increaseQuantity(shoe: Shoe, selectedColor: string, selectedSize: string) {
+    const item = this.cart.find(
+      (item) =>
+        item.shoe.name === shoe.name &&
+        item.selectedColor === selectedColor &&
+        item.selectedSize === selectedSize
+    );
+
+    if (item) {
+      item.quantity += 1;
+    }
+  }
+
+  decreaseQuantity(shoe: Shoe, selectedColor: string, selectedSize: string) {
+    const index = this.cart.findIndex(
+      (item) =>
+        item.shoe.name === shoe.name &&
+        item.selectedColor === selectedColor &&
+        item.selectedSize === selectedSize
+    );
+
+    if (index > -1) {
+      if (this.cart[index].quantity > 1) {
+        this.cart[index].quantity -= 1;
+      } else {
+        this.cart.splice(index, 1);
+      }
+    }
   }
 
   getCartItems(): CartItem[] {
@@ -19,11 +66,14 @@ class CartStore {
   }
 
   get totalItems(): number {
-    return this.cart.length;
+    return this.cart.reduce((sum, item) => sum + item.quantity, 0);
   }
 
   get cartTotal(): number {
-    return this.cart.reduce((sum, item) => sum + item.selectedPrice, 0);
+    return this.cart.reduce(
+      (sum, item) => sum + item.selectedPrice * item.quantity,
+      0
+    );
   }
 }
 

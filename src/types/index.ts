@@ -20,4 +20,5 @@ export interface CartItem {
   selectedSize: string;
   selectedColor: string;
   selectedPrice: number;
+  quantity: number;
 }

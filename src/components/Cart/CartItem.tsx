@@ -1,12 +1,17 @@
+'use client';
+
 import Image from 'next/image';
 import { CartItem as CartItemType } from '../../types';
+import QuantitySelector from './QuantitySelector';
+import { cartStore } from '../../stores/cart-store';
+import { observer } from 'mobx-react-lite';
 
 interface Props {
   item: CartItemType;
 }
 
-const CartItem: React.FC<Props> = ({ item }) => {
-  const { shoe, selectedColor, selectedSize, selectedPrice } = item;
+const CartItem: React.FC<Props> = observer(({ item }) => {
+  const { shoe, selectedColor, selectedSize, selectedPrice, quantity } = item;
 
   return (
     <div className="flex gap-4 border-b pb-4">
@@ -15,20 +20,33 @@ const CartItem: React.FC<Props> = ({ item }) => {
         height={96}
         src={shoe.colorImages[selectedColor]}
         alt={shoe.name}
-        className="w-24 h-24 object-cover rounded"
+        className="w-40 object-cover rounded"
       />
-      <div className="flex flex-col justify-between">
-        <div>
-          <h2 className="text-lg font-semibold">{shoe.name}</h2>
-          <p className="text-sm text-gray-600">{shoe.brand}</p>
-          <p className="text-sm mt-1">
-            Size: {selectedSize} · Color: {selectedColor}
+      <div className="flex flex-col justify-between flex-1">
+        <div className="flex justify-between">
+          <div>
+            <h2 className="text-lg font-semibold">{shoe.name}</h2>
+            <p className="text-sm text-gray-600">{shoe.brand}</p>
+            <p className="text-sm mt-1">
+              Size: {selectedSize} · Color: {selectedColor}
+            </p>
+          </div>
+          <p className="text-base font-medium min-w-max pl-4">
+            ${(selectedPrice * quantity).toFixed(2)}
           </p>
         </div>
-        <p className="text-base font-medium">${selectedPrice.toFixed(2)}</p>
+        <QuantitySelector
+          quantity={quantity}
+          onIncrease={() =>
+            cartStore.increaseQuantity(shoe, selectedColor, selectedSize)
+          }
+          onDecrease={() =>
+            cartStore.decreaseQuantity(shoe, selectedColor, selectedSize)
+          }
+        />
       </div>
     </div>
   );
-};
+});
 
 export default CartItem;

@@ -21,7 +21,11 @@ describe('CartItem', () => {
     });
 
     it('shows the selected price', () => {
-      expect(screen.getByText('$180.00')).toBeInTheDocument();
+      expect(screen.getByText('$360.00')).toBeInTheDocument();
+    });
+
+    it('shows the quantity', () => {
+      expect(screen.getByText('2')).toBeInTheDocument();
     });
   });
 
