@@ -21,7 +21,7 @@ describe('CartButton', () => {
       prices: { Red: 100 },
     };
     expect(screen.queryByText('1')).not.toBeInTheDocument();
-    cartStore.increaseQuantity(mockShoe, 'Red', '10', 'add');
+    cartStore.updateQuantity(mockShoe, 'Red', '10', 'add');
 
     render(<CartButton />);
     expect(screen.getByText('1')).toBeInTheDocument();

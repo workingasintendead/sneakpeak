@@ -7,11 +7,12 @@ import { cartStore } from '../../stores/cart-store';
 import { observer } from 'mobx-react-lite';
 
 interface Props {
-  item: CartItemType;
+  cartItem: CartItemType;
 }
 
-const CartItem: React.FC<Props> = observer(({ item }) => {
-  const { shoe, selectedColor, selectedSize, selectedPrice, quantity } = item;
+const CartItem: React.FC<Props> = observer(({ cartItem }) => {
+  const { shoe, selectedColor, selectedSize, selectedPrice, quantity } =
+    cartItem;
 
   return (
     <div className="flex gap-4 border-b pb-4">
@@ -38,7 +39,7 @@ const CartItem: React.FC<Props> = observer(({ item }) => {
         <QuantitySelector
           quantity={quantity}
           onIncrease={() =>
-            cartStore.increaseQuantity(
+            cartStore.updateQuantity(
               shoe,
               selectedColor,
               selectedSize,
@@ -46,7 +47,12 @@ const CartItem: React.FC<Props> = observer(({ item }) => {
             )
           }
           onDecrease={() =>
-            cartStore.decreaseQuantity(shoe, selectedColor, selectedSize)
+            cartStore.updateQuantity(
+              shoe,
+              selectedColor,
+              selectedSize,
+              'decrease'
+            )
           }
         />
       </div>

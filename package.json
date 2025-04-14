@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:playwright": "npx playwright test",
     "format": "prettier --write ."
   },

@@ -14,4 +14,5 @@ module.exports = {
     '<rootDir>/src/app/**/*.test.tsx',
     '<rootDir>/src/components/**/*.test.tsx',
   ],
+  collectCoverage: true,
 };

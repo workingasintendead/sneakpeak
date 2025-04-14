@@ -16,7 +16,7 @@ const CartList: React.FC = observer(() => {
         items.map((item) => (
           <CartItem
             key={`${item.shoe.name}-${item.selectedColor}-${item.selectedSize}`}
-            item={item}
+            cartItem={item}
           />
         ))
       )}
