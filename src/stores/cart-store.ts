@@ -13,7 +13,7 @@ class CartStore {
     shoe: Shoe,
     selectedColor: string,
     selectedSize: string,
-    action: 'increase' | 'decrease' | 'add'
+    action: 'increase' | 'decrease'
   ) {
     const selectedPrice = shoe.prices[selectedColor];
 
@@ -25,7 +25,7 @@ class CartStore {
     );
 
     if (cartItem) {
-      if (action === 'increase' || action === 'add') {
+      if (action === 'increase') {
         cartItem.quantity += 1;
       } else if (action === 'decrease') {
         if (cartItem.quantity > 1) {
@@ -37,7 +37,7 @@ class CartStore {
           }
         }
       }
-    } else if (action === 'add') {
+    } else if (action === 'increase') {
       this.cart.push({
         shoe,
         selectedColor,
