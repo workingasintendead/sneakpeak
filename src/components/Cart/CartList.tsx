@@ -2,8 +2,9 @@
 
 import { cartStore } from '../../stores/cart-store';
 import CartItem from './CartItem';
+import { observer } from 'mobx-react-lite';
 
-const CartList: React.FC = () => {
+const CartList: React.FC = observer(() => {
   const items = cartStore.getCartItems();
 
   return (
@@ -12,12 +13,15 @@ const CartList: React.FC = () => {
       {items.length === 0 ? (
         <p>Your bag is empty.</p>
       ) : (
-        items.map((item, index) => (
-          <CartItem key={`${item.shoe.name}-${index}`} item={item} />
+        items.map((item) => (
+          <CartItem
+            key={`${item.shoe.name}-${item.selectedColor}-${item.selectedSize}`}
+            cartItem={item}
+          />
         ))
       )}
     </div>
   );
-};
+});
 
 export default CartList;

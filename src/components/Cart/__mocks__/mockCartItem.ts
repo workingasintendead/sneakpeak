@@ -18,4 +18,5 @@ export const mockCartItem: CartItem = {
   selectedColor: 'Pink',
   selectedSize: '9',
   selectedPrice: 180,
+  quantity: 2,
 };
