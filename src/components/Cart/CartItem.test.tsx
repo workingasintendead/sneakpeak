@@ -4,6 +4,7 @@ import { mockCartItem } from './__mocks__/mockCartItem';
 import { cartStore } from '../../stores/cart-store';
 
 let mockQuantity = 2;
+let rerender: ReturnType<typeof render>['rerender'];
 
 jest.mock('../../stores/cart-store', () => ({
   cartStore: {
@@ -15,17 +16,11 @@ jest.mock('../../stores/cart-store', () => ({
 }));
 
 describe('CartItem', () => {
-  const renderCartItem = () => {
-    const updatedCartItem = {
-      ...mockCartItem,
-      quantity: mockQuantity,
-    };
-    render(<CartItem cartItem={updatedCartItem} />);
-  };
-
   beforeEach(() => {
     mockQuantity = 2;
-    renderCartItem();
+    ({ rerender } = render(
+      <CartItem cartItem={{ ...mockCartItem, quantity: mockQuantity }} />
+    ));
   });
 
   describe('renders text content', () => {
@@ -62,7 +57,9 @@ describe('CartItem', () => {
         'increase'
       );
 
-      renderCartItem();
+      rerender(
+        <CartItem cartItem={{ ...mockCartItem, quantity: mockQuantity }} />
+      );
       expect(screen.getByText('3')).toBeInTheDocument();
     });
 
@@ -77,7 +74,9 @@ describe('CartItem', () => {
         'decrease'
       );
 
-      renderCartItem();
+      rerender(
+        <CartItem cartItem={{ ...mockCartItem, quantity: mockQuantity }} />
+      );
       expect(screen.getByText('1')).toBeInTheDocument();
     });
   });
