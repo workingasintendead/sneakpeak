@@ -20,7 +20,7 @@ const ShoeGrid: React.FC<ShoeGridProps> = ({ shoes }) => {
     price: number
   ) => {
     setConfirmationMessage(
-      `Added ${name} in size ${size} and color ${color} for $${price} to the cart!`
+      `Added ${color} ${name} in size ${size} for $${price} to the cart!`
     );
 
     setTimeout(() => {
