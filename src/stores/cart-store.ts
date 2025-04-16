@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { Shoe, CartItem } from '../types/index';
 
-class CartStore {
+export class CartStore {
   cart: CartItem[];
 
   constructor() {

@@ -73,8 +73,6 @@ const ShoeCard: React.FC<ShoeCardProps> = observer(
         if (onAddToCart) {
           onAddToCart(name, activeSize, activeColor, activePrice);
         }
-      } else {
-        alert('Please select a size and color before adding to the cart!');
       }
     };
 

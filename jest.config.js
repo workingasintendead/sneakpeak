@@ -10,9 +10,6 @@ module.exports = {
     'node_modules/(?!(@testing-library|some-other-library)/)',
   ],
   testPathIgnorePatterns: ['<rootDir>/tests/'],
-  testMatch: [
-    '<rootDir>/src/app/**/*.test.tsx',
-    '<rootDir>/src/components/**/*.test.tsx',
-  ],
+  testMatch: ['<rootDir>/src/**/*.test.(ts|tsx)'],
   collectCoverage: true,
 };
