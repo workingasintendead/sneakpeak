@@ -13,7 +13,10 @@ describe('AddToCartButton', () => {
     const onAddToCartMock = jest.fn();
     render(<AddToCartButton onAddToCart={onAddToCartMock} disabled={false} />);
 
+    expect(onAddToCartMock).toHaveBeenCalledTimes(0);
+
     fireEvent.click(screen.getByRole('button', { name: /add to cart/i }));
+
     expect(onAddToCartMock).toHaveBeenCalledTimes(1);
   });
 

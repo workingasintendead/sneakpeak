@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import ShoeCard from './ShoeCard';
+import { mockData } from '../../data/MockData';
 
 jest.mock('../../stores/cart-store', () => ({
   cartStore: {
@@ -7,46 +8,33 @@ jest.mock('../../stores/cart-store', () => ({
   },
 }));
 
-const mockShoeProps = {
-  name: 'UltraBoost 21',
-  brand: 'Adidas',
-  sizes: ['7', '8', '9', '10'],
-  colors: ['White', 'Blue'],
-  colorImages: {
-    White: 'white-image-url',
-    Blue: 'blue-image-url',
-  },
-  description:
-    'The Adidas UltraBoost 21 offers superior comfort and energy return with every step.',
-  prices: {
-    White: 100,
-    Blue: 110,
-  },
-};
+const mockShoe = mockData.men[0];
 
 describe('ShoeCard', () => {
   it('renders the shoe card with the initial color and price', () => {
-    render(<ShoeCard {...mockShoeProps} />);
+    render(<ShoeCard {...mockShoe} />);
 
-    expect(screen.getByText('Price: $100')).toBeInTheDocument();
-    expect(screen.getByAltText('UltraBoost 21 - White')).toBeInTheDocument();
+    expect(screen.getByText('Price: $150')).toBeInTheDocument();
+    expect(screen.getByAltText('Air Max 97 - Red')).toBeInTheDocument();
   });
 
   it('changes the image and price when a different color is selected', () => {
-    render(<ShoeCard {...mockShoeProps} />);
-    const blueButton = screen.getByRole('button', { name: 'Blue' });
+    render(<ShoeCard {...mockShoe} />);
+    const blackButton = screen.getByRole('button', { name: 'Black' });
 
-    expect(screen.getByText('Price: $100')).toBeInTheDocument();
-    expect(screen.getByAltText('UltraBoost 21 - White')).toBeInTheDocument();
+    expect(screen.getByText('Price: $150')).toBeInTheDocument();
+    expect(screen.getByAltText('Air Max 97 - Red')).toBeInTheDocument();
 
-    fireEvent.click(blueButton);
+    fireEvent.click(blackButton);
 
-    expect(screen.getByText('Price: $110')).toBeInTheDocument();
-    expect(screen.getByAltText('UltraBoost 21 - Blue')).toBeInTheDocument();
+    expect(screen.getByText('Price: $140')).toBeInTheDocument();
+    expect(screen.getByAltText('Air Max 97 - Black')).toBeInTheDocument();
+    expect(screen.queryByText('Price: $150')).not.toBeInTheDocument();
+    expect(screen.queryByAltText('Air Max 97 - Red')).not.toBeInTheDocument();
   });
 
   it('enables the Add to Cart button when both color and size are selected', () => {
-    render(<ShoeCard {...mockShoeProps} />);
+    render(<ShoeCard {...mockShoe} />);
 
     const addButton = screen.getByRole('button', { name: 'Add to Cart' });
     const sizeButton = screen.getByRole('button', { name: '7' });
@@ -58,18 +46,13 @@ describe('ShoeCard', () => {
 
   it('calls onAddToCart when the Add to Cart button is clicked with valid inputs', () => {
     const mockAddToCart = jest.fn();
-    render(<ShoeCard {...mockShoeProps} onAddToCart={mockAddToCart} />);
+    render(<ShoeCard {...mockShoe} onAddToCart={mockAddToCart} />);
 
     fireEvent.click(screen.getByRole('button', { name: '9' }));
     fireEvent.click(screen.getByRole('button', { name: 'White' }));
 
     fireEvent.click(screen.getByRole('button', { name: 'Add to Cart' }));
 
-    expect(mockAddToCart).toHaveBeenCalledWith(
-      'UltraBoost 21',
-      '9',
-      'White',
-      100
-    );
+    expect(mockAddToCart).toHaveBeenCalledWith('Air Max 97', '9', 'White', 130);
   });
 });

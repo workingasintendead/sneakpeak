@@ -2,15 +2,14 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import ColorSelector from './ColorSelector';
 
 describe('ColorSelector', () => {
-  const mockColors = ['Red', 'Blue', 'Green'];
-  const mockOnColorChange = jest.fn();
-
   it('renders all color options', () => {
+    const mockColors = ['Red', 'Blue', 'Green'];
+
     render(
       <ColorSelector
         colors={mockColors}
         activeColor="Red"
-        onColorChange={mockOnColorChange}
+        onColorChange={jest.fn()}
       />
     );
 
@@ -20,6 +19,9 @@ describe('ColorSelector', () => {
   });
 
   it('changes highlighted active color from Red to Green on click', () => {
+    const mockColors = ['Red', 'Blue', 'Green'];
+    const mockOnColorChange = jest.fn();
+
     const { rerender } = render(
       <ColorSelector
         colors={mockColors}
