@@ -22,6 +22,11 @@ describe('DesktopMenu', () => {
 
     expect(screen.getByText('Nike')).toBeInTheDocument();
     expect(screen.getByText('Adidas')).toBeInTheDocument();
+
+    fireEvent.mouseOut(screen.getByText('Men'));
+
+    expect(screen.queryByText('Puma')).not.toBeInTheDocument();
+    expect(screen.queryByText('Reebok')).not.toBeInTheDocument();
   });
 
   it('displays Women categories', () => {
@@ -34,6 +39,11 @@ describe('DesktopMenu', () => {
 
     expect(screen.getByText('Puma')).toBeInTheDocument();
     expect(screen.getByText('Reebok')).toBeInTheDocument();
+
+    fireEvent.mouseOut(screen.getByText('Women'));
+
+    expect(screen.queryByText('Puma')).not.toBeInTheDocument();
+    expect(screen.queryByText('Reebok')).not.toBeInTheDocument();
   });
 
   it('displays Kids categories', () => {
@@ -46,5 +56,10 @@ describe('DesktopMenu', () => {
 
     expect(screen.getByText('New Balance')).toBeInTheDocument();
     expect(screen.getByText('Converse')).toBeInTheDocument();
+
+    fireEvent.mouseOut(screen.getByText('Kids'));
+
+    expect(screen.queryByText('Puma')).not.toBeInTheDocument();
+    expect(screen.queryByText('Reebok')).not.toBeInTheDocument();
   });
 });
