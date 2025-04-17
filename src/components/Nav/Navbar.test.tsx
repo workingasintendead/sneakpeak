@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Navbar from './Navbar';
-import '@testing-library/jest-dom';
 
 jest.mock('./MobileMenu', () => {
   const MobileMenu = ({

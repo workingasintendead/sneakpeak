@@ -11,7 +11,7 @@ const DesktopDropdown: React.FC<DesktopDropdownProps> = ({
   category,
 }) => {
   return (
-    <div className="absolute left-0 hidden mt-0 space-y-2 bg-gray-800 text-white group-hover:block group-focus-within:block hover:block transition-all duration-3000 ease-in-out">
+    <div className="absolute left-0 top-full z-50 bg-gray-800 text-white p-4 shadow-lg min-w-[200px]">
       {category.shoebrands.length > 0 && (
         <div className="px-4 py-1 mt-1">
           <h3 className="font-semibold">Brands</h3>

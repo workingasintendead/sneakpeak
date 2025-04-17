@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Navbar from '../Nav/Navbar';
 import ShoeGrid from './ShoeGrid';
 import { mockData } from '../../data/MockData';
 import LoadingSpinner from '../LoadingSpinner';
@@ -26,13 +25,11 @@ const ProductPage = ({ category }: ProductPageProps) => {
 
   return (
     <>
-      <Navbar />
       <header className="text-center my-4">
         <h1 className="text-white text-3xl font-semibold">
           {category.charAt(0).toUpperCase() + category.slice(1)}
         </h1>
       </header>
-
       {loading ? (
         <div
           className="flex justify-center items-center"
