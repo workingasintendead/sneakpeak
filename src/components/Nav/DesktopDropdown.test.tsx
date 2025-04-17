@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import DesktopDropdown from './DesktopDropdown';
-import '@testing-library/jest-dom';
 
 describe('DesktopDropdown', () => {
   const mockCategory = {

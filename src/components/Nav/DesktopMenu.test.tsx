@@ -1,6 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import DesktopMenu from './DesktopMenu';
-import '@testing-library/jest-dom';
 
 jest.mock('../../stores/edge-config-store');
 
@@ -13,14 +12,54 @@ describe('DesktopMenu', () => {
     expect(screen.getByText('Kids')).toBeInTheDocument();
   });
 
-  it('displays all menu categories', () => {
+  it('displays Men categories', () => {
     render(<DesktopMenu />);
+
+    expect(screen.queryByText('Nike')).not.toBeInTheDocument();
+    expect(screen.queryByText('Adidas')).not.toBeInTheDocument();
+
+    fireEvent.mouseOver(screen.getByText('Men'));
 
     expect(screen.getByText('Nike')).toBeInTheDocument();
     expect(screen.getByText('Adidas')).toBeInTheDocument();
+
+    fireEvent.mouseOut(screen.getByText('Men'));
+
+    expect(screen.queryByText('Puma')).not.toBeInTheDocument();
+    expect(screen.queryByText('Reebok')).not.toBeInTheDocument();
+  });
+
+  it('displays Women categories', () => {
+    render(<DesktopMenu />);
+
+    expect(screen.queryByText('Puma')).not.toBeInTheDocument();
+    expect(screen.queryByText('Reebok')).not.toBeInTheDocument();
+
+    fireEvent.mouseOver(screen.getByText('Women'));
+
     expect(screen.getByText('Puma')).toBeInTheDocument();
     expect(screen.getByText('Reebok')).toBeInTheDocument();
+
+    fireEvent.mouseOut(screen.getByText('Women'));
+
+    expect(screen.queryByText('Puma')).not.toBeInTheDocument();
+    expect(screen.queryByText('Reebok')).not.toBeInTheDocument();
+  });
+
+  it('displays Kids categories', () => {
+    render(<DesktopMenu />);
+
+    expect(screen.queryByText('New Balance')).not.toBeInTheDocument();
+    expect(screen.queryByText('Converse')).not.toBeInTheDocument();
+
+    fireEvent.mouseOver(screen.getByText('Kids'));
+
     expect(screen.getByText('New Balance')).toBeInTheDocument();
     expect(screen.getByText('Converse')).toBeInTheDocument();
+
+    fireEvent.mouseOut(screen.getByText('Kids'));
+
+    expect(screen.queryByText('Puma')).not.toBeInTheDocument();
+    expect(screen.queryByText('Reebok')).not.toBeInTheDocument();
   });
 });

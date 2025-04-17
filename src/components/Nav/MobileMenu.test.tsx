@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import MobileMenu from './MobileMenu';
 import { edgeConfigStore } from '../../stores/edge-config-store';
-import '@testing-library/jest-dom';
 
 jest.mock('../../stores/edge-config-store');
 

@@ -5,22 +5,33 @@ import { Category } from '../../types/index';
 interface DesktopCategoryProps {
   categoryKey: string;
   category: Category | undefined;
+  isOpen: boolean;
+  onHover: (key: string | null) => void;
 }
 
 const DesktopCategory: React.FC<DesktopCategoryProps> = ({
   categoryKey,
   category,
+  isOpen,
+  onHover,
 }) => {
   return (
-    <div key={categoryKey} className="relative group">
-      <Link href={`/${categoryKey.toLowerCase()}`}>
-        <button className="px-4 py-3 text-lg block after-line font-semibold cursor-pointer">
-          {categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)}
-        </button>
+    <div
+      className="relative"
+      onMouseEnter={() => onHover(categoryKey)}
+      onMouseLeave={() => onHover(null)}
+    >
+      <Link
+        href={`/${categoryKey.toLowerCase()}`}
+        className="px-4 py-3 text-lg font-semibold cursor-pointer after-line block"
+      >
+        {categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1)}
       </Link>
 
-      {category && (
-        <DesktopDropdown categoryKey={categoryKey} category={category} />
+      {category && isOpen && (
+        <div className="absolute left-0 top-full z-50">
+          <DesktopDropdown categoryKey={categoryKey} category={category} />
+        </div>
       )}
     </div>
   );

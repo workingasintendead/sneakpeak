@@ -2,9 +2,11 @@ import { observer } from 'mobx-react-lite';
 import { edgeConfigStore } from '../../stores/edge-config-store';
 import DesktopCategory from './DesktopCategory';
 import { AudienceCategory } from '../../types/enumerations';
+import { useState } from 'react';
 
 const DesktopMenu: React.FC = observer(() => {
   const { configData } = edgeConfigStore;
+  const [openCategory, setOpenCategory] = useState<string | null>(null);
 
   const constantCategories = Object.values(AudienceCategory);
 
@@ -16,6 +18,8 @@ const DesktopMenu: React.FC = observer(() => {
             key={categoryKey}
             categoryKey={categoryKey}
             category={configData?.categories[categoryKey.toLowerCase()]}
+            isOpen={openCategory === categoryKey}
+            onHover={setOpenCategory}
           />
         ))}
       </nav>

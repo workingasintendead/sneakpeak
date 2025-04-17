@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import CartItem from './CartItem';
 import { mockCartItem } from './__mocks__/mockCartItem';
 import { cartStore } from '../../stores/cart-store';
-import '@testing-library/jest-dom';
 
 let mockQuantity = 2;
 let rerender: ReturnType<typeof render>['rerender'];
