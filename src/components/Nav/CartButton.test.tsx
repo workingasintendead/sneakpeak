@@ -1,22 +1,22 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import CartButton from './CartButton';
+import CartDrawer from '../Cart/CartDrawer/CartDrawer';
 import { cartStore } from '../../stores/cart-store';
 import { Shoe } from '../../types/index';
 
 describe('CartButton', () => {
-  it('cart link renders', () => {
-    render(<CartButton />);
-    expect(screen.getByRole('link')).toBeInTheDocument();
+  beforeEach(() => {
+    cartStore.closeDrawer();
   });
 
   it('displays the correct cart count after adding item', () => {
     const mockShoe: Shoe = {
-      picture_url: '',
+      picture_url: 'default-image-url',
       name: 'Test Shoe',
       brand: '',
       sizes: ['10'],
       colors: ['Red'],
-      colorImages: { Red: '' },
+      colorImages: { Red: 'red-image-url' },
       description: '',
       prices: { Red: 100 },
     };
@@ -31,5 +31,26 @@ describe('CartButton', () => {
     render(<CartButton />);
     const icon = screen.getByText(/shopping_bag/i);
     expect(icon).toBeInTheDocument();
+  });
+
+  it('opens the drawer when clicked', () => {
+    render(
+      <>
+        <CartButton />
+        <CartDrawer />
+      </>
+    );
+
+    expect(screen.getByTestId('cart-drawer')).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(screen.getByTestId('cart-drawer')).toHaveAttribute(
+      'aria-hidden',
+      'false'
+    );
   });
 });

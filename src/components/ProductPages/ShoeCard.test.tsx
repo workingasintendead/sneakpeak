@@ -5,6 +5,7 @@ import { mockData } from '../../data/MockData';
 jest.mock('../../stores/cart-store', () => ({
   cartStore: {
     updateQuantity: jest.fn(),
+    openDrawer: jest.fn(),
   },
 }));
 

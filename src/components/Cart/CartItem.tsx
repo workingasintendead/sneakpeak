@@ -8,14 +8,15 @@ import { observer } from 'mobx-react-lite';
 
 interface Props {
   cartItem: CartItemType;
+  compact?: boolean;
 }
 
-const CartItem: React.FC<Props> = observer(({ cartItem }) => {
+const CartItem: React.FC<Props> = observer(({ cartItem, compact = false }) => {
   const { shoe, selectedColor, selectedSize, selectedPrice, quantity } =
     cartItem;
 
   return (
-    <div className="flex gap-4 border-b pb-4">
+    <div className={`flex gap-4 border-b pb-4 last:border-b-0 last:pb-0`}>
       <Image
         width={96}
         height={96}
@@ -27,10 +28,17 @@ const CartItem: React.FC<Props> = observer(({ cartItem }) => {
         <div className="flex justify-between">
           <div>
             <h2 className="text-lg font-semibold">{shoe.name}</h2>
-            <p className="text-sm text-gray-600">{shoe.brand}</p>
-            <p className="text-sm mt-1">
-              Size: {selectedSize} · Color: {selectedColor}
-            </p>
+            <p className="text-sm text-gray-400">{shoe.brand}</p>
+            {compact ? (
+              <div className="text-sm mt-1 flex flex-col text-white">
+                <span>Size: {selectedSize}</span>
+                <span>Color: {selectedColor}</span>
+              </div>
+            ) : (
+              <p className="text-sm mt-1 text-white">
+                Size: {selectedSize} · Color: {selectedColor}
+              </p>
+            )}
           </div>
           <p className="text-base font-medium min-w-max pl-4">
             ${(selectedPrice * quantity).toFixed(2)}

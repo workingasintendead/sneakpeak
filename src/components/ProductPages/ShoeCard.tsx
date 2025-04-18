@@ -73,6 +73,8 @@ const ShoeCard: React.FC<ShoeCardProps> = observer(
         if (onAddToCart) {
           onAddToCart(name, activeSize, activeColor, activePrice);
         }
+
+        cartStore.openDrawer();
       }
     };
 
