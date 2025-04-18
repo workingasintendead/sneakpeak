@@ -3,6 +3,7 @@ import { Shoe, CartItem } from '../types/index';
 
 export class CartStore {
   cart: CartItem[];
+  drawerOpen = false;
 
   constructor() {
     this.cart = [];
@@ -61,6 +62,14 @@ export class CartStore {
       (sum, cartItem) => sum + cartItem.selectedPrice * cartItem.quantity,
       0
     );
+  }
+
+  openDrawer() {
+    this.drawerOpen = true;
+  }
+
+  closeDrawer() {
+    this.drawerOpen = false;
   }
 }
 

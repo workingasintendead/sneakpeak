@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import ConfigFetch from '../components/ConfigFetch';
 import Navbar from '../components/Nav/Navbar';
+import CartDrawer from '../components/Cart/CartDrawer/CartDrawer';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -38,8 +39,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-scroll`}
       >
-        <Navbar />
         <ConfigFetch />
+        <Navbar />
+        <CartDrawer />
         {children}
       </body>
     </html>

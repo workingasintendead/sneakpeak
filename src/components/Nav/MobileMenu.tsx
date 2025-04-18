@@ -5,6 +5,7 @@ import { edgeConfigStore } from '../../stores/edge-config-store';
 import Link from 'next/link';
 import MobileCategory from './MobileCategory';
 import LoadingSpinner from '../LoadingSpinner';
+import { AudienceCategory } from '../../types/enumerations';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -14,6 +15,7 @@ interface MobileMenuProps {
 const MobileMenu: React.FC<MobileMenuProps> = observer(({ isOpen, close }) => {
   const { configData } = edgeConfigStore;
 
+  const constantCategories = Object.values(AudienceCategory);
   const categories = configData?.categories ?? {};
   const uniqueBrands = edgeConfigStore.uniqueBrands ?? [];
 
@@ -34,17 +36,15 @@ const MobileMenu: React.FC<MobileMenuProps> = observer(({ isOpen, close }) => {
           </button>
 
           <div className="mt-12">
-            {['men', 'women', 'kids']
-              .filter((categoryKey) => categories[categoryKey])
-              .map((categoryKey) => (
-                <MobileCategory
-                  key={categoryKey}
-                  title={categories[categoryKey].title}
-                  shoestyles={categories[categoryKey].shoestyles}
-                  categoryKey={categoryKey}
-                  close={close}
-                />
-              ))}
+            {constantCategories.map((categoryKey) => (
+              <MobileCategory
+                key={categoryKey}
+                title={categories[categoryKey]?.title ?? categoryKey}
+                shoestyles={categories[categoryKey]?.shoestyles ?? []}
+                categoryKey={categoryKey}
+                close={close}
+              />
+            ))}
 
             <div>
               <Link href="/brands" className="block py-2">
