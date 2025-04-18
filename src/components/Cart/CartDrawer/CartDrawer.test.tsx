@@ -13,7 +13,7 @@ describe('CartDrawer', () => {
   it('renders when drawer is open', () => {
     cartStore.openDrawer();
     render(<CartDrawer />);
-    expect(screen.getByTestId('cart-drawer')).toBeVisible();
+    expect(screen.getByText('Your Bag')).toBeVisible();
   });
 
   it('is hidden when drawer is closed', () => {

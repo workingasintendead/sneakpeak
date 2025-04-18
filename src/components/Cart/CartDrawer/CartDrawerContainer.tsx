@@ -23,6 +23,7 @@ const CartDrawerContainer: React.FC<CartDrawerContainerProps> = ({
 
       <div
         data-testid="cart-drawer"
+        role="dialog"
         aria-hidden={!isOpen}
         className={`fixed top-0 right-0 h-full w-full max-w-[35rem] bg-gray-800 z-50 shadow-lg transition-transform duration-500 ease-in-out transform ${
           isOpen ? 'translate-x-0' : 'translate-x-full'

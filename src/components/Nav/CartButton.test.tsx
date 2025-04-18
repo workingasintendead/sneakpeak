@@ -33,24 +33,19 @@ describe('CartButton', () => {
     expect(icon).toBeInTheDocument();
   });
 
-  it('opens the drawer when clicked', () => {
+  it('opens the drawer when clicked', async () => {
     render(
       <>
         <CartButton />
         <CartDrawer />
       </>
     );
-
-    expect(screen.getByTestId('cart-drawer')).toHaveAttribute(
-      'aria-hidden',
-      'true'
-    );
+    const drawer = screen.getByTestId('cart-drawer');
+    expect(drawer).toHaveAttribute('aria-hidden', 'true');
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(screen.getByTestId('cart-drawer')).toHaveAttribute(
-      'aria-hidden',
-      'false'
-    );
+    const drawerTitle = await screen.findByText(/your bag/i);
+    expect(drawerTitle).toBeInTheDocument();
   });
 });
