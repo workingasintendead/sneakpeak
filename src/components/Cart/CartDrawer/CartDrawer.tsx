@@ -2,7 +2,6 @@
 
 import { observer } from 'mobx-react-lite';
 import { cartStore } from '../../../stores/cart-store';
-import CartDrawerContainer from './CartDrawerContainer';
 import EmptyCartContent from './CartDrawerEmpty';
 import CartItemList from './CartDrawerList';
 
@@ -13,26 +12,42 @@ const CartDrawer: React.FC = observer(() => {
   const subtotal = cartStore.cartTotal;
 
   return (
-    <CartDrawerContainer isOpen={isOpen} onClose={closeDrawer}>
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">Your Bag</h2>
-        <button aria-label="close" onClick={closeDrawer}>
-          <i className="material-icons cursor-pointer">close</i>
-        </button>
-      </div>
+    <>
+      <div
+        role="button"
+        aria-label="Close cart overlay"
+        onClick={closeDrawer}
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-500 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+      />
 
-      <div className="flex-1 overflow-y-auto space-y-4 custom-scrollbar">
-        {items.length === 0 ? (
-          <EmptyCartContent onClose={closeDrawer} />
-        ) : (
-          <CartItemList
-            cartItems={items}
-            subtotal={subtotal}
-            onClose={closeDrawer}
-          />
-        )}
+      <div
+        role="dialog"
+        aria-label="Shopping cart"
+        aria-hidden={!isOpen}
+        className={`fixed top-0 right-0 h-full w-full max-w-[35rem] bg-gray-800 z-50 shadow-lg transition-transform duration-500 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <div className="p-4 h-full flex flex-col">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-semibold">Your Bag</h2>
+            <button aria-label="close" onClick={closeDrawer}>
+              <i className="material-icons cursor-pointer">close</i>
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto space-y-4 custom-scrollbar">
+            {items.length === 0 ? (
+              <EmptyCartContent onClose={closeDrawer} />
+            ) : (
+              <CartItemList
+                cartItems={items}
+                subtotal={subtotal}
+                onClose={closeDrawer}
+              />
+            )}
+          </div>
+        </div>
       </div>
-    </CartDrawerContainer>
+    </>
   );
 });
 

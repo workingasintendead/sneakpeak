@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 const CartButton: React.FC = observer(() => {
   return (
     <button
+      aria-label="Open shopping cart"
       onClick={() => cartStore.openDrawer()}
       className="relative h-10 w-10 flex items-center justify-center cursor-pointer"
     >

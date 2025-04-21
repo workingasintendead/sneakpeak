@@ -1,27 +1,46 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import CartDrawer from './CartDrawer';
 import { cartStore } from '../../../stores/cart-store';
 import { mockData } from '../../../data/MockData';
+import CartButton from '../../Nav/CartButton';
 
 beforeEach(() => {
-  jest.restoreAllMocks();
   cartStore.cart = [];
-  cartStore.closeDrawer();
+  cartStore.openDrawer();
 });
 
 describe('CartDrawer', () => {
-  it('renders when drawer is open', () => {
-    cartStore.openDrawer();
-    render(<CartDrawer />);
-    expect(screen.getByText('Your Bag')).toBeVisible();
+  it('shows drawer when open', () => {
+    cartStore.closeDrawer();
+    render(
+      <>
+        <CartButton />
+        <CartDrawer />
+      </>
+    );
+
+    const drawer = screen.getByLabelText('Shopping cart', {
+      selector: '[role="dialog"]',
+    });
+
+    expect(drawer).toHaveAttribute('aria-hidden', 'true');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Open shopping cart' }));
+
+    expect(drawer).toHaveAttribute('aria-hidden', 'false');
   });
 
   it('is hidden when drawer is closed', () => {
     render(<CartDrawer />);
-    expect(screen.getByTestId('cart-drawer')).toHaveAttribute(
-      'aria-hidden',
-      'true'
-    );
+    const drawer = screen.getByLabelText('Shopping cart', {
+      selector: '[role="dialog"]',
+    });
+
+    expect(drawer).toHaveAttribute('aria-hidden', 'false');
+
+    fireEvent.click(screen.getByRole('button', { name: 'close' }));
+
+    expect(drawer).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('renders empty cart content when cart is empty', () => {
@@ -30,48 +49,57 @@ describe('CartDrawer', () => {
     expect(screen.getByText('Your bag is empty.')).toBeInTheDocument();
   });
 
-  it('renders cart items when cart has items', () => {
+  it('renders cart items when cart has items', async () => {
     const [shoe1, shoe2] = mockData.kids;
-    cartStore.updateQuantity(shoe1, 'Pink', '5', 'increase');
-    cartStore.updateQuantity(shoe2, 'White', '6', 'increase');
     cartStore.openDrawer();
-
     render(<CartDrawer />);
 
-    expect(screen.queryByText(/your bag is empty/i)).not.toBeInTheDocument();
+    expect(screen.getByText('Your bag is empty.')).toBeInTheDocument();
+    expect(screen.queryByText(shoe1.name)).not.toBeInTheDocument();
+    expect(screen.queryByText(shoe2.name)).not.toBeInTheDocument();
 
+    cartStore.updateQuantity(shoe1, 'Pink', '5', 'increase');
+    cartStore.updateQuantity(shoe2, 'White', '6', 'increase');
+
+    await waitFor(() =>
+      expect(screen.queryByText('Your bag is empty.')).not.toBeInTheDocument()
+    );
     expect(screen.getByText(shoe1.name)).toBeInTheDocument();
     expect(screen.getByText(shoe2.name)).toBeInTheDocument();
   });
 
-  it('hides the drawer when close icon is clicked', () => {
+  it('correctly updates when cart items are added and removed', async () => {
+    const [shoe1, shoe2] = mockData.kids;
+    cartStore.updateQuantity(shoe1, 'Pink', '5', 'increase');
+    cartStore.updateQuantity(shoe2, 'White', '6', 'increase');
     cartStore.openDrawer();
     render(<CartDrawer />);
 
-    const closeButton = screen.getByRole('button', { name: /close/i });
-    fireEvent.click(closeButton);
+    expect(screen.queryByText('Your bag is empty.')).not.toBeInTheDocument();
+    expect(screen.getByText(shoe1.name)).toBeInTheDocument();
+    expect(screen.getByText(shoe2.name)).toBeInTheDocument();
 
-    expect(screen.getByTestId('cart-drawer')).toHaveAttribute(
-      'aria-hidden',
-      'true'
+    cartStore.updateQuantity(shoe1, 'Pink', '5', 'decrease');
+    cartStore.updateQuantity(shoe2, 'White', '6', 'decrease');
+
+    await waitFor(() =>
+      expect(screen.getByText('Your bag is empty.')).toBeInTheDocument()
     );
+    expect(screen.queryByText(shoe1.name)).not.toBeInTheDocument();
+    expect(screen.queryByText(shoe2.name)).not.toBeInTheDocument();
   });
 
   it('hides the drawer when overlay is clicked', () => {
-    cartStore.openDrawer();
     render(<CartDrawer />);
+    const drawer = screen.getByLabelText('Shopping cart', {
+      selector: '[role="dialog"]',
+    });
 
-    expect(screen.getByTestId('cart-drawer')).toHaveAttribute(
-      'aria-hidden',
-      'false'
-    );
+    expect(drawer).toHaveAttribute('aria-hidden', 'false');
 
-    const overlay = screen.getByTestId('cart-overlay');
+    const overlay = screen.getByRole('button', { name: 'Close cart overlay' });
     fireEvent.click(overlay);
 
-    expect(screen.getByTestId('cart-drawer')).toHaveAttribute(
-      'aria-hidden',
-      'true'
-    );
+    expect(drawer).toHaveAttribute('aria-hidden', 'true');
   });
 });

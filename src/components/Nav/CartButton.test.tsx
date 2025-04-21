@@ -29,7 +29,7 @@ describe('CartButton', () => {
 
   it('displays the correct shopping bag icon', () => {
     render(<CartButton />);
-    const icon = screen.getByText(/shopping_bag/i);
+    const icon = screen.getByText('shopping_bag');
     expect(icon).toBeInTheDocument();
   });
 
@@ -40,12 +40,15 @@ describe('CartButton', () => {
         <CartDrawer />
       </>
     );
-    const drawer = screen.getByTestId('cart-drawer');
+    const drawer = screen.getByLabelText('Shopping cart', {
+      selector: '[role="dialog"]',
+    });
     expect(drawer).toHaveAttribute('aria-hidden', 'true');
 
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByRole('button', { name: 'Open shopping cart' }));
 
-    const drawerTitle = await screen.findByText(/your bag/i);
+    const drawerTitle = await screen.findByText('Your Bag');
     expect(drawerTitle).toBeInTheDocument();
+    expect(drawer).toHaveAttribute('aria-hidden', 'false');
   });
 });
