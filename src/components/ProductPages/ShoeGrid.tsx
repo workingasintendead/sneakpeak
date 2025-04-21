@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import ShoeCard from './ShoeCard';
 import { Shoe } from '../../types/index';
 
@@ -9,51 +8,22 @@ interface ShoeGridProps {
 }
 
 const ShoeGrid: React.FC<ShoeGridProps> = ({ shoes }) => {
-  const [confirmationMessage, setConfirmationMessage] = useState<string | null>(
-    null
-  );
-
-  const handleAddToCart = (
-    name: string,
-    size: string,
-    color: string,
-    price: number
-  ) => {
-    setConfirmationMessage(
-      `Added ${color} ${name} in size ${size} for $${price} to the cart!`
-    );
-
-    setTimeout(() => {
-      setConfirmationMessage(null);
-    }, 3000);
-  };
-
   return (
-    <>
-      {confirmationMessage && (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-md shadow-md z-10">
-          {confirmationMessage}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 pb-4">
+      {shoes.map((shoe) => (
+        <div key={shoe.name} className="flex flex-col h-full">
+          <ShoeCard
+            name={shoe.name}
+            brand={shoe.brand}
+            sizes={shoe.sizes}
+            colors={shoe.colors}
+            colorImages={shoe.colorImages}
+            description={shoe.description}
+            prices={shoe.prices}
+          />
         </div>
-      )}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 pb-4">
-        {shoes.map((shoe) => (
-          <div key={shoe.name} className="flex flex-col h-full">
-            {' '}
-            <ShoeCard
-              name={shoe.name}
-              brand={shoe.brand}
-              sizes={shoe.sizes}
-              colors={shoe.colors}
-              colorImages={shoe.colorImages}
-              description={shoe.description}
-              prices={shoe.prices}
-              onAddToCart={handleAddToCart}
-            />
-          </div>
-        ))}
-      </div>
-    </>
+      ))}
+    </div>
   );
 };
 
