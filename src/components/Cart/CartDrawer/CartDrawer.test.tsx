@@ -17,24 +17,28 @@ describe('CartDrawer', () => {
       selector: '[role="dialog"]',
     });
 
-    expect(drawer).toHaveAttribute('aria-hidden', 'true');
+    expect(drawer).toHaveClass('translate-x-full');
 
     cartStore.openDrawer();
 
-    await waitFor(() => expect(drawer).toHaveAttribute('aria-hidden', 'false'));
+    await waitFor(() => {
+      expect(drawer).toHaveClass('translate-x-0');
+    });
   });
 
-  it('is hidden when drawer is closed', () => {
+  it('is hidden when drawer is closed', async () => {
     render(<CartDrawer />);
     const drawer = screen.getByLabelText('Shopping cart', {
       selector: '[role="dialog"]',
     });
 
-    expect(drawer).toHaveAttribute('aria-hidden', 'false');
+    expect(drawer).toHaveClass('translate-x-0');
 
     fireEvent.click(screen.getByRole('button', { name: 'close' }));
 
-    expect(drawer).toHaveAttribute('aria-hidden', 'true');
+    await waitFor(() => {
+      expect(drawer).toHaveClass('translate-x-full');
+    });
   });
 
   it('renders empty cart content when cart is empty', () => {

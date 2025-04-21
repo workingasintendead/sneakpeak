@@ -43,12 +43,12 @@ describe('CartButton', () => {
     const drawer = screen.getByLabelText('Shopping cart', {
       selector: '[role="dialog"]',
     });
-    expect(drawer).toHaveAttribute('aria-hidden', 'true');
+    expect(drawer).toHaveClass('translate-x-full');
 
     fireEvent.click(screen.getByRole('button', { name: 'Open shopping cart' }));
 
     const drawerTitle = await screen.findByText('Your Bag');
     expect(drawerTitle).toBeInTheDocument();
-    expect(drawer).toHaveAttribute('aria-hidden', 'false');
+    expect(drawer).toHaveClass('translate-x-0');
   });
 });
