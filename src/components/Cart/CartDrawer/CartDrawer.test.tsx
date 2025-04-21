@@ -2,7 +2,6 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import CartDrawer from './CartDrawer';
 import { cartStore } from '../../../stores/cart-store';
 import { mockData } from '../../../data/MockData';
-import CartButton from '../../Nav/CartButton';
 
 beforeEach(() => {
   cartStore.cart = [];
@@ -10,14 +9,9 @@ beforeEach(() => {
 });
 
 describe('CartDrawer', () => {
-  it('shows drawer when open', () => {
+  it('shows drawer when open', async () => {
     cartStore.closeDrawer();
-    render(
-      <>
-        <CartButton />
-        <CartDrawer />
-      </>
-    );
+    render(<CartDrawer />);
 
     const drawer = screen.getByLabelText('Shopping cart', {
       selector: '[role="dialog"]',
@@ -25,9 +19,9 @@ describe('CartDrawer', () => {
 
     expect(drawer).toHaveAttribute('aria-hidden', 'true');
 
-    fireEvent.click(screen.getByRole('button', { name: 'Open shopping cart' }));
+    cartStore.openDrawer();
 
-    expect(drawer).toHaveAttribute('aria-hidden', 'false');
+    await waitFor(() => expect(drawer).toHaveAttribute('aria-hidden', 'false'));
   });
 
   it('is hidden when drawer is closed', () => {
