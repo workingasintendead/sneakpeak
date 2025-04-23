@@ -8,7 +8,7 @@ export const mockCartItem: CartItem = {
     sizes: ['9'],
     colors: ['Pink'],
     colorImages: {
-      Pink: '/images/ultraboost-pink.jpg',
+      Pink: ['/images/ultraboost-pink.jpg'],
     },
     description: '',
     prices: {

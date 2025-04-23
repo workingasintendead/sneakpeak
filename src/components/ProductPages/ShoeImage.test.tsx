@@ -19,8 +19,7 @@ describe('ShoeImage', () => {
     render(
       <ShoeImage images={images} name={mockShoe.name} activeColor="Red" />
     );
-    expect(screen.getByText('‹')).toBeInTheDocument();
-    expect(screen.getByText('›')).toBeInTheDocument();
+    expect(screen.getAllByRole('button')).toHaveLength(2);
   });
 
   it('does not render nav buttons if only 1 image', () => {
@@ -31,8 +30,7 @@ describe('ShoeImage', () => {
         activeColor="Black"
       />
     );
-    expect(screen.queryByText('‹')).not.toBeInTheDocument();
-    expect(screen.queryByText('›')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
   it('clicking next shows the next image', () => {

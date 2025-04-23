@@ -16,9 +16,7 @@ const CartItem: React.FC<Props> = observer(({ cartItem, compact = false }) => {
     cartItem;
 
   const selectedColorImages = shoe.colorImages[selectedColor];
-  const imageUrl = Array.isArray(selectedColorImages)
-    ? selectedColorImages[0]
-    : selectedColorImages;
+  const imageUrl = selectedColorImages[0];
 
   return (
     <div className={`flex gap-4 border-b pb-4 last:border-b-0 last:pb-0`}>

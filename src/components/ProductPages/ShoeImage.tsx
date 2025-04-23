@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 interface ShoeImageProps {
@@ -8,25 +8,28 @@ interface ShoeImageProps {
 }
 
 const ShoeImage: React.FC<ShoeImageProps> = ({ images, name, activeColor }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
+  const [image, setImage] = useState('');
+  const indexRef = useRef(0);
   useEffect(() => {
-    setCurrentIndex(0);
+    indexRef.current = 0;
+    setImage(images[indexRef.current]);
   }, [images]);
 
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    indexRef.current = (indexRef.current + 1) % images.length;
+    setImage(images[indexRef.current]);
   };
 
   const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    indexRef.current = (indexRef.current - 1 + images.length) % images.length;
+    setImage(images[indexRef.current]);
   };
 
   return (
     <div className="relative w-full h-60 group">
-      {images.length > 0 && currentIndex < images.length && (
+      {image.length > 0 && (
         <Image
-          src={images[currentIndex]}
+          src={image}
           alt={`${name} - ${activeColor}`}
           width={300}
           height={300}
