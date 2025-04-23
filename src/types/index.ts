@@ -10,7 +10,7 @@ export interface Shoe {
   brand: string;
   sizes: string[];
   colors: string[];
-  colorImages: { [color: string]: string };
+  colorImages: { [color: string]: string[] };
   description: string;
   prices: { [color: string]: number };
 }

@@ -15,15 +15,20 @@ const CartItem: React.FC<Props> = observer(({ cartItem, compact = false }) => {
   const { shoe, selectedColor, selectedSize, selectedPrice, quantity } =
     cartItem;
 
+  const selectedColorImages = shoe.colorImages[selectedColor];
+  const imageUrl = selectedColorImages[0];
+
   return (
     <div className={`flex gap-4 border-b pb-4 last:border-b-0 last:pb-0`}>
-      <Image
-        width={96}
-        height={96}
-        src={shoe.colorImages[selectedColor]}
-        alt={shoe.name}
-        className="w-40 object-cover rounded"
-      />
+      <div className="w-40 relative">
+        <Image
+          src={imageUrl}
+          alt={shoe.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 160px"
+          className="object-cover rounded"
+        />
+      </div>
       <div className="flex flex-col justify-between flex-1">
         <div className="flex justify-between">
           <div>

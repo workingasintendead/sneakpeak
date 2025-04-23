@@ -15,7 +15,7 @@ interface ShoeCardProps {
   brand: string;
   sizes: string[];
   colors: string[];
-  colorImages: { [color: string]: string };
+  colorImages: { [color: string]: string[] };
   description: string;
   prices: { [color: string]: number };
   onAddToCart?: (
@@ -39,11 +39,17 @@ const ShoeCard: React.FC<ShoeCardProps> = observer(
   }) => {
     const [activeColor, setActiveColor] = useState<string>(colors[0]);
     const [activeSize, setActiveSize] = useState<string | null>(null);
-    const [activeImage, setActiveImage] = useState(colorImages[colors[0]]);
+    const [activeImageList, setActiveImageList] = useState<string[]>(
+      colorImages[colors[0]]
+    );
     const [activePrice, setActivePrice] = useState<number>(prices[colors[0]]);
 
     useEffect(() => {
-      setActiveImage(colorImages[activeColor]);
+      setActiveImageList(
+        Array.isArray(colorImages[activeColor])
+          ? colorImages[activeColor]
+          : [colorImages[activeColor]]
+      );
       setActivePrice(prices[activeColor]);
     }, [activeColor, colorImages, prices]);
 
@@ -58,7 +64,7 @@ const ShoeCard: React.FC<ShoeCardProps> = observer(
     const handleAddToCart = () => {
       if (activeColor && activeSize) {
         const shoe: Shoe = {
-          picture_url: activeImage,
+          picture_url: activeImageList[0],
           name,
           brand,
           sizes,
@@ -81,7 +87,7 @@ const ShoeCard: React.FC<ShoeCardProps> = observer(
     return (
       <div className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
         <ShoeImage
-          activeImage={activeImage}
+          images={activeImageList}
           name={name}
           activeColor={activeColor}
         />

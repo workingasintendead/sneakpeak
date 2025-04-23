@@ -12,10 +12,17 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The Nike Air Max 97 Kids sneaker offers a stylish design with air cushioning for all-day comfort.',
       colorImages: {
-        Pink: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Blue: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        White:
+        Pink: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Blue: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
       },
       prices: {
         Pink: 90,
@@ -33,11 +40,17 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The Adidas UltraBoost 21 Kids shoe is designed for comfort with superior energy return, perfect for active kids.',
       colorImages: {
-        Pink: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        White:
+        Pink: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Yellow:
+        ],
+        White: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Yellow: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Pink: 75,
@@ -55,10 +68,16 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The Yeezy Boost 350 V2 Kids sneaker combines comfort with style, offering a trendy design and ultimate comfort.',
       colorImages: {
-        Red: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Black:
+        Red: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Black: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        Blue: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Blue: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Red: 100,
@@ -76,9 +95,13 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The Reebok Classic Leather Kids sneaker is a timeless design with comfort and style for any occasion.',
       colorImages: {
-        White:
+        White: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        Pink: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Pink: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         White: 50,
@@ -95,15 +118,23 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The iconic Converse Chuck Taylor All Star Kids sneaker blends retro style with all-day comfort for young feet.',
       colorImages: {
-        Red: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Blue: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        White:
+        Red: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Blue: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
       },
       prices: {
         Red: 45,
-        Blue: 40,
-        White: 35,
+        Blue: 45,
+        White: 50,
       },
     },
     {
@@ -116,10 +147,13 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         "The Nike Zoom Freak 1 Kids sneaker is Giannis Antetokounmpo's signature basketball shoe, now for younger athletes.",
       colorImages: {
-        Orange:
+        Orange: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        Green:
+        ],
+        Green: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
       },
       prices: {
         Orange: 50,
@@ -136,8 +170,14 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The New Balance Fresh Foam 1080v11 Kids sneaker provides the ultimate in comfort and support for active kids.',
       colorImages: {
-        Blue: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Pink: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        Blue: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Pink: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Blue: 55,
@@ -154,10 +194,13 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The Nike Mamba Fury Kids sneaker celebrates the legacy of Kobe Bryant with a durable and stylish design.',
       colorImages: {
-        Black:
+        Black: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        Yellow:
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Yellow: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Black: 60,
@@ -176,11 +219,17 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The Nike Air Max 97 is a classic sneaker with air cushioning and a sleek design.',
       colorImages: {
-        Red: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Black:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        White:
+        Red: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Black: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
       },
       prices: {
         Red: 150,
@@ -198,11 +247,17 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The Adidas UltraBoost 21 offers superior comfort and energy return with every step.',
       colorImages: {
-        Blue: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        White:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Black:
+        Blue: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Black: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Blue: 180,
@@ -220,11 +275,17 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The Yeezy Boost 350 V2 features a stylish design and comfortable boost cushioning.',
       colorImages: {
-        Grey: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Black:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        White:
+        Grey: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Black: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
       },
       prices: {
         Grey: 220,
@@ -242,10 +303,13 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The Reebok Classic Leather is a versatile sneaker that blends comfort with style.',
       colorImages: {
-        White:
+        White: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        Black:
+        ],
+        Black: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
       },
       prices: {
         White: 90,
@@ -262,12 +326,20 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The iconic Converse Chuck Taylor All Star has stood the test of time.',
       colorImages: {
-        Red: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Black:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        White:
+        Red: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Blue: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Black: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Blue: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Red: 60,
@@ -278,7 +350,7 @@ export const mockData: { [key: string]: Shoe[] } = {
     },
     {
       picture_url:
-        'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9473-2.jpg?auto=webp&quality=75&width=980&dpr=2',
+        'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9477-2.jpg?auto=webp&quality=75&width=980&dpr=2',
       name: 'Nike Zoom Freak 1',
       brand: 'Nike',
       sizes: ['9', '10', '11', '12'],
@@ -286,10 +358,12 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         "The Nike Zoom Freak 1 is Giannis Antetokounmpo's signature basketball shoe.",
       colorImages: {
-        Orange:
+        Orange: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        Black:
+        ],
+        Black: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Orange: 120,
@@ -306,8 +380,14 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The New Balance Fresh Foam 1080v11 provides premium comfort and support.',
       colorImages: {
-        Grey: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
-        Blue: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        Grey: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Blue: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Grey: 140,
@@ -324,10 +404,14 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         'The Nike Mamba Fury is a basketball shoe that celebrates the legacy of Kobe Bryant.',
       colorImages: {
-        Black:
+        Black: [
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
-        Yellow:
           'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Yellow: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
       },
       prices: {
         Black: 110,
@@ -346,11 +430,16 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         "The Nike Air Max 97 Women's is a stylish sneaker with air cushioning for all-day comfort.",
       colorImages: {
-        Pink: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
-        Black:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9405.jpg?auto=webp&quality=75&width=980&dpr=2',
-        White:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
+        Pink: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Black: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
       },
       prices: {
         Pink: 150,
@@ -368,10 +457,17 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         "The Adidas UltraBoost 21 Women's sneaker offers superior comfort and energy return with every step.",
       colorImages: {
-        Pink: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9405.jpg?auto=webp&quality=75&width=980&dpr=2',
-        White:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
-        Grey: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9405.jpg?auto=webp&quality=75&width=980&dpr=2',
+        Pink: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Grey: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Pink: 180,
@@ -389,12 +485,17 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         "The Yeezy Boost 350 V2 Women's features a modern design and comfortable boost cushioning for all-day wear.",
       colorImages: {
-        Beige:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
-        Black:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9405.jpg?auto=webp&quality=75&width=980&dpr=2',
-        White:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
+        Beige: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Black: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Beige: 220,
@@ -412,10 +513,13 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         "The Reebok Classic Leather Women's sneaker offers a blend of comfort, style, and durability.",
       colorImages: {
-        White:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9405.jpg?auto=webp&quality=75&width=980&dpr=2',
-        Black:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Black: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         White: 90,
@@ -432,12 +536,20 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         "The Converse Chuck Taylor All Star Women's is a timeless classic with a variety of colors.",
       colorImages: {
-        Red: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
-        Black:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9405.jpg?auto=webp&quality=75&width=980&dpr=2',
-        White:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
-        Blue: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9405.jpg?auto=webp&quality=75&width=980&dpr=2',
+        Red: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Black: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        White: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Blue: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Red: 60,
@@ -456,10 +568,13 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         "The Nike Zoom Freak 1 Women's is Giannis Antetokounmpo's signature basketball shoe, designed for women.",
       colorImages: {
-        Orange:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9405.jpg?auto=webp&quality=75&width=980&dpr=2',
-        Black:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
+        Orange: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
+        Black: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+        ],
       },
       prices: {
         Orange: 120,
@@ -476,8 +591,13 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         "The New Balance Fresh Foam 1080v11 Women's offers plush cushioning and premium comfort.",
       colorImages: {
-        Grey: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
-        Blue: 'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9405.jpg?auto=webp&quality=75&width=980&dpr=2',
+        Grey: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Blue: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
       },
       prices: {
         Grey: 140,
@@ -494,10 +614,13 @@ export const mockData: { [key: string]: Shoe[] } = {
       description:
         "The Nike Mamba Fury Women's pays tribute to Kobe Bryant and is designed for performance on the court.",
       colorImages: {
-        Black:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9405.jpg?auto=webp&quality=75&width=980&dpr=2',
-        Yellow:
-          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9393.jpg?auto=webp&quality=75&width=980&dpr=2',
+        Black: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
+        Yellow: [
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9338.jpg?auto=webp&quality=75&width=1024',
+          'https://cdn.thewirecutter.com/wp-content/media/2024/05/white-sneaker-2048px-9358.jpg?auto=webp&quality=75&width=480&dpr=1.5',
+        ],
       },
       prices: {
         Black: 110,

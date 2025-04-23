@@ -37,7 +37,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-scroll`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-scroll overflow-x-hidden min-w-[400px]`}
       >
         <ConfigFetch />
         <Navbar />
