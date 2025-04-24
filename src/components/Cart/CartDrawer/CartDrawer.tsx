@@ -26,7 +26,7 @@ const CartDrawer: React.FC = observer(() => {
         aria-hidden={!isOpen}
         className={`fixed top-0 right-0 h-full w-full max-w-[35rem] bg-gray-800 z-50 shadow-lg transition-transform duration-500 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
-        <div className="p-4 h-full flex flex-col">
+        <div className="p-4 h-full flex flex-col text-white">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold">Your Bag</h2>
             <button aria-label="close" onClick={closeDrawer}>
