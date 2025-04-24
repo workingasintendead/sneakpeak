@@ -25,7 +25,7 @@ describe('CartDrawer', () => {
 
     expect(drawer).toHaveClass('translate-x-full');
 
-    await act(async () => {
+    act(() => {
       cartStore.openDrawer();
     });
 
@@ -64,7 +64,7 @@ describe('CartDrawer', () => {
     expect(screen.queryByText(shoe1.name)).not.toBeInTheDocument();
     expect(screen.queryByText(shoe2.name)).not.toBeInTheDocument();
 
-    await act(async () => {
+    act(() => {
       cartStore.updateQuantity(shoe1, 'Pink', '5', 'increase');
       cartStore.updateQuantity(shoe2, 'White', '6', 'increase');
     });
@@ -87,7 +87,7 @@ describe('CartDrawer', () => {
     expect(screen.getByText(shoe1.name)).toBeInTheDocument();
     expect(screen.getByText(shoe2.name)).toBeInTheDocument();
 
-    await act(async () => {
+    act(() => {
       cartStore.updateQuantity(shoe1, 'Pink', '5', 'decrease');
       cartStore.updateQuantity(shoe2, 'White', '6', 'decrease');
     });
