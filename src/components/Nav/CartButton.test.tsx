@@ -16,7 +16,7 @@ describe('CartButton', () => {
       brand: '',
       sizes: ['10'],
       colors: ['Red'],
-      colorImages: { Red: 'red-image-url' },
+      colorImages: { Red: ['red-image-url'] },
       description: '',
       prices: { Red: 100 },
     };

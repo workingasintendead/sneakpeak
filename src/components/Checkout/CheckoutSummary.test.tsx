@@ -20,9 +20,7 @@ describe('CheckoutSummary', () => {
 
   it('renders the desktop order summary title', () => {
     render(<CheckoutSummary />);
-    const desktopSection = screen.getByRole('presentation', {
-      name: 'Order summary',
-    });
+    const desktopSection = screen.getByLabelText('Order summary');
     const title = within(desktopSection).getAllByText('Order Summary');
 
     expect(title).toHaveLength(1);

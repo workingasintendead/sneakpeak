@@ -31,7 +31,6 @@ const MobileCheckoutSummary: React.FC = () => {
         </div>
         <div
           ref={contentRef}
-          role="presentation"
           aria-label="Order Summary Items"
           className="overflow-hidden transition-[max-height] duration-300 ease-in-out mb-3"
           style={{ maxHeight: showItems ? height : '0px' }}

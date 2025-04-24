@@ -25,9 +25,9 @@ describe('MobileCheckoutSummary', () => {
     expect(screen.getByText('Order Summary')).toBeInTheDocument();
     expect(screen.getByText('Show')).toBeInTheDocument();
     expect(screen.getByText('keyboard_arrow_down')).toBeInTheDocument();
-    expect(
-      screen.getByRole('presentation', { name: 'Order Summary Items' })
-    ).toHaveStyle('max-height: 0px');
+    expect(screen.getByLabelText('Order Summary Items')).toHaveStyle(
+      'max-height: 0px'
+    );
   });
 
   it('shows CheckoutSummaryItemList when "Show" button is clicked', async () => {
@@ -35,15 +35,15 @@ describe('MobileCheckoutSummary', () => {
 
     expect(screen.getByText('Show')).toBeInTheDocument();
     expect(screen.getByText('keyboard_arrow_down')).toBeInTheDocument();
-    expect(
-      screen.getByRole('presentation', { name: 'Order Summary Items' })
-    ).toHaveStyle('max-height: 0px');
+    expect(screen.getByLabelText('Order Summary Items')).toHaveStyle(
+      'max-height: 0px'
+    );
 
     fireEvent.click(screen.getByText('Show'));
 
-    expect(
-      screen.getByRole('presentation', { name: 'Order Summary Items' })
-    ).toHaveStyle('max-height: 3000px');
+    expect(screen.getByLabelText('Order Summary Items')).toHaveStyle(
+      'max-height: 3000px'
+    );
     expect(screen.getByText('Hide')).toBeInTheDocument();
     expect(screen.getByText('keyboard_arrow_up')).toBeInTheDocument();
   });
@@ -55,17 +55,15 @@ describe('MobileCheckoutSummary', () => {
     fireEvent.click(screen.getByText('Hide'));
 
     expect(screen.getByText('Show')).toBeInTheDocument();
-    expect(
-      screen.getByRole('presentation', { name: 'Order Summary Items' })
-    ).toHaveStyle('max-height: 0px');
+    expect(screen.getByLabelText('Order Summary Items')).toHaveStyle(
+      'max-height: 0px'
+    );
   });
 
   it('animates the visibility correctly', async () => {
     render(<MobileCheckoutSummary />);
 
-    const content = screen.getByRole('presentation', {
-      name: 'Order Summary Items',
-    });
+    const content = screen.getByLabelText('Order Summary Items');
     expect(content).toHaveStyle('max-height: 0px');
 
     fireEvent.click(screen.getByText('Show'));

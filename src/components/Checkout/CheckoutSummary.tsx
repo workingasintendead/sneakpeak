@@ -11,11 +11,7 @@ const CheckoutSummary: React.FC = observer(() => {
       <MobileCheckoutSummary />
       <div className="hidden lg:block mb-3">
         <div className="flex justify-between items-center pb-0 mb-3">
-          <h2
-            className="text-xl font-semibold"
-            role="presentation"
-            aria-label="Order summary"
-          >
+          <h2 className="text-xl font-semibold" aria-label="Order summary">
             Order Summary
           </h2>
         </div>
