@@ -2,8 +2,19 @@ import '@testing-library/jest-dom';
 
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props: React.ComponentProps<'img'>) => {
-    return <img {...props} />;
+  default: ({
+    fill,
+    alt,
+    ...props
+  }: React.ComponentProps<'img'> & { fill?: boolean }) => {
+    if (fill) {
+      return (
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <img {...props} alt={alt} />
+        </div>
+      );
+    }
+    return <img {...props} alt={alt} />;
   },
 }));
 

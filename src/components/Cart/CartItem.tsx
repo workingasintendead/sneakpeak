@@ -25,7 +25,8 @@ const CartItem: React.FC<Props> = observer(({ cartItem, compact = false }) => {
           src={imageUrl}
           alt={shoe.name}
           fill
-          sizes="(max-width: 768px) 100vw, 160px"
+          sizes="160px"
+          quality={100}
           className="object-cover rounded"
         />
       </div>
