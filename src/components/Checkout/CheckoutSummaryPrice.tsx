@@ -12,11 +12,11 @@ const CheckoutSummaryPrice: React.FC = observer(() => {
 
   return (
     <div className="space-y-3 text-sm border-t pt-3">
-      <div className="flex justify-between" aria-label="subtotal">
+      <div className="flex justify-between">
         <span>Subtotal</span>
         <span>${subtotal.toFixed(2)}</span>
       </div>
-      <div className="flex justify-between" aria-label="shipping">
+      <div className="flex justify-between">
         <span>Shipping</span>
         <span>
           {shippingCost === 0 ? (
@@ -25,22 +25,16 @@ const CheckoutSummaryPrice: React.FC = observer(() => {
           {shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}`}
         </span>
       </div>
-      <div className="flex justify-between" aria-label="estimated taxes">
+      <div className="flex justify-between">
         <span>Estimated taxes</span>
         <span>${taxes.toFixed(2)}</span>
       </div>
-      <div
-        className="flex justify-between font-semibold text-base border-t pt-3 mb-1"
-        aria-label="total"
-      >
+      <div className="flex justify-between font-semibold text-base border-t pt-3 mb-1">
         <span>Total</span>
         <span>${total.toFixed(2)}</span>
       </div>
       {savings > 0 && (
-        <div
-          className="text-sm text-green-400 font-medium pt-0"
-          aria-label="savings"
-        >
+        <div className="text-sm text-green-400 font-medium pt-0">
           <i className="material-icons rotate-y-180 align-middle">sell</i> TOTAL
           SAVINGS ${savings.toFixed(2)}
         </div>

@@ -16,7 +16,7 @@ const MobileCheckoutSummary: React.FC = () => {
 
   return (
     <>
-      <div className="lg:hidden mb-0" aria-label="Mobile summary">
+      <div className="lg:hidden mb-0">
         <div
           onClick={() => setShowItems(!showItems)}
           className="flex justify-between items-center cursor-pointer select-none pb-0 mb-0"
