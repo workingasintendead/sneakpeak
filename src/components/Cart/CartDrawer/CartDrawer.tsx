@@ -3,7 +3,7 @@
 import { observer } from 'mobx-react-lite';
 import { cartStore } from '../../../stores/cart-store';
 import EmptyCartContent from './CartDrawerEmpty';
-import CartItemList from './CartDrawerList';
+import CartDrawerList from './CartDrawerList';
 
 const CartDrawer: React.FC = observer(() => {
   const isOpen = cartStore.drawerOpen;
@@ -38,7 +38,7 @@ const CartDrawer: React.FC = observer(() => {
             {items.length === 0 ? (
               <EmptyCartContent onClose={closeDrawer} />
             ) : (
-              <CartItemList
+              <CartDrawerList
                 cartItems={items}
                 subtotal={subtotal}
                 onClose={closeDrawer}

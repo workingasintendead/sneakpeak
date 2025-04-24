@@ -28,7 +28,7 @@ const CartDrawerList: React.FC<CartItemListProps> = ({
         <i>Shipping & taxes calculated at checkout</i>
       </div>
       <Link
-        href="/cart"
+        href="/checkout"
         className="block w-full mt-4 bg-black text-white text-center text-lg font-medium py-3 rounded hover:bg-gray-900 transition"
         aria-label="checkout button"
         onClick={onClose}

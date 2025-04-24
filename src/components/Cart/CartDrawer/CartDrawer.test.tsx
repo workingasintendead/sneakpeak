@@ -1,4 +1,10 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+} from '@testing-library/react';
 import CartDrawer from './CartDrawer';
 import { cartStore } from '../../../stores/cart-store';
 import { mockData } from '../../../data/MockData';
@@ -19,7 +25,9 @@ describe('CartDrawer', () => {
 
     expect(drawer).toHaveClass('translate-x-full');
 
-    cartStore.openDrawer();
+    await act(async () => {
+      cartStore.openDrawer();
+    });
 
     await waitFor(() => {
       expect(drawer).toHaveClass('translate-x-0');
@@ -56,8 +64,10 @@ describe('CartDrawer', () => {
     expect(screen.queryByText(shoe1.name)).not.toBeInTheDocument();
     expect(screen.queryByText(shoe2.name)).not.toBeInTheDocument();
 
-    cartStore.updateQuantity(shoe1, 'Pink', '5', 'increase');
-    cartStore.updateQuantity(shoe2, 'White', '6', 'increase');
+    await act(async () => {
+      cartStore.updateQuantity(shoe1, 'Pink', '5', 'increase');
+      cartStore.updateQuantity(shoe2, 'White', '6', 'increase');
+    });
 
     await waitFor(() =>
       expect(screen.queryByText('Your bag is empty.')).not.toBeInTheDocument()
@@ -77,8 +87,10 @@ describe('CartDrawer', () => {
     expect(screen.getByText(shoe1.name)).toBeInTheDocument();
     expect(screen.getByText(shoe2.name)).toBeInTheDocument();
 
-    cartStore.updateQuantity(shoe1, 'Pink', '5', 'decrease');
-    cartStore.updateQuantity(shoe2, 'White', '6', 'decrease');
+    await act(async () => {
+      cartStore.updateQuantity(shoe1, 'Pink', '5', 'decrease');
+      cartStore.updateQuantity(shoe2, 'White', '6', 'decrease');
+    });
 
     await waitFor(() =>
       expect(screen.getByText('Your bag is empty.')).toBeInTheDocument()
