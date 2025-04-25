@@ -71,6 +71,10 @@ export class CartStore {
   closeDrawer() {
     this.drawerOpen = false;
   }
+
+  clearCart() {
+    this.cart = [];
+  }
 }
 
 export const cartStore = new CartStore();
