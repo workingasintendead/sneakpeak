@@ -21,7 +21,7 @@ describe('ProductPage', () => {
 
   it('displays loading spinner initially', () => {
     render(<ProductPage category={category} />);
-    expect(screen.getByLabelText(/loading spinner/i)).toBeInTheDocument();
+    expect(screen.getByRole('status')).toBeInTheDocument();
   });
 
   it('renders ShoeGrid with correct number of ShoeCards after loading', async () => {

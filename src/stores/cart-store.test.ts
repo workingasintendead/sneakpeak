@@ -1,23 +1,8 @@
 import { CartStore } from './cart-store';
 import type { Shoe } from '../types';
+import { mockData } from '../data/MockData';
 
-const mockShoe: Shoe = {
-  picture_url: '/default-UltraBoost-21.jpg',
-  name: 'UltraBoost 21',
-  brand: 'Adidas',
-  sizes: ['7', '8', '9', '10'],
-  colors: ['White', 'Blue'],
-  colorImages: {
-    White: 'white-image-url',
-    Blue: 'blue-image-url',
-  },
-  description:
-    'The Adidas UltraBoost 21 offers superior comfort and energy return with every step.',
-  prices: {
-    White: 100,
-    Blue: 110,
-  },
-};
+const mockShoe: Shoe = mockData.men[1];
 
 describe('CartStore', () => {
   let store: CartStore;
@@ -36,7 +21,7 @@ describe('CartStore', () => {
     expect(items[0].quantity).toBe(1);
     expect(items[0].selectedColor).toBe('White');
     expect(items[0].selectedSize).toBe('10');
-    expect(items[0].selectedPrice).toBe(100);
+    expect(items[0].selectedPrice).toBe(170);
   });
 
   it('increases quantity if item already exists', () => {
@@ -82,7 +67,25 @@ describe('CartStore', () => {
     store.updateQuantity(mockShoe, 'White', '10', 'increase');
     store.updateQuantity(mockShoe, 'Blue', '9', 'increase');
 
-    const expectedTotal = 100 * 2 + 110;
+    const expectedTotal = 170 * 2 + 180;
     expect(store.cartTotal).toBe(expectedTotal);
+  });
+
+  it('clears totalItems correctly', () => {
+    expect(store.totalItems).toBe(0);
+
+    store.updateQuantity(mockShoe, 'White', '10', 'increase');
+    store.updateQuantity(mockShoe, 'White', '10', 'increase');
+
+    expect(store.totalItems).toBe(2);
+    expect(store.cartTotal).toBe(340);
+    expect(store.getCartItems()).toHaveLength(1);
+    expect(store.getCartItems()[0].quantity).toBe(2);
+
+    store.clearCart();
+
+    expect(store.totalItems).toBe(0);
+    expect(store.cartTotal).toBe(0);
+    expect(store.getCartItems()).toHaveLength(0);
   });
 });

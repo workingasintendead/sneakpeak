@@ -105,11 +105,11 @@ describe('CartDrawer', () => {
       selector: '[role="dialog"]',
     });
 
-    expect(drawer).toHaveAttribute('aria-hidden', 'false');
+    expect(drawer).toHaveClass('translate-x-0');
 
-    const overlay = screen.getByRole('button', { name: 'Close cart overlay' });
+    const overlay = screen.getByRole('presentation');
     fireEvent.click(overlay);
 
-    expect(drawer).toHaveAttribute('aria-hidden', 'true');
+    expect(drawer).toHaveClass('translate-x-full');
   });
 });
