@@ -1,10 +1,11 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import CheckoutContactForm from './CheckoutContactForm';
 
 describe('CheckoutContactForm', () => {
   const mockHandleChange = jest.fn();
   const mockContact = {
-    name: 'Jane Hoe',
+    name: 'Jane Doe',
     email: 'jane@example.com',
     phone: '666-867-5309',
   };
@@ -20,14 +21,14 @@ describe('CheckoutContactForm', () => {
     );
   });
 
-  it('calls handleChange when inputs change', () => {
+  it('calls handleChange when inputs change', async () => {
     render(
       <CheckoutContactForm form={mockContact} handleChange={mockHandleChange} />
     );
     const nameInput = screen.getByPlaceholderText('Name');
 
-    fireEvent.change(nameInput, { target: { value: 'Joe Blow' } });
+    await userEvent.type(nameInput, 'Joe Blow');
 
-    expect(mockHandleChange).toHaveBeenCalledTimes(1);
+    expect(mockHandleChange).toHaveBeenCalledTimes('Joe Blow'.length);
   });
 });

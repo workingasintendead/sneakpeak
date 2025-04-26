@@ -9,6 +9,7 @@ import CheckoutForm from './CheckoutForm';
 import { Stripe } from '@stripe/stripe-js';
 import { cartStore } from '../../stores/cart-store';
 import { mockCartItem } from '../Cart/__mocks__/mockCartItem';
+import userEvent from '@testing-library/user-event';
 
 const confirmCardPaymentMock = jest.fn();
 const mockStripe = {
@@ -37,7 +38,7 @@ jest.mock('next/navigation', () => ({
 }));
 
 const testData = {
-  name: 'Jane Hoe',
+  name: 'Jane Doe',
   email: 'jane@example.com',
   phone: '666-867-5309',
   street: '123 Main St',
@@ -100,6 +101,36 @@ describe('CheckoutForm', () => {
     await waitFor(() => {
       expect(confirmCardPaymentMock).toHaveBeenCalledTimes(1);
     });
+    expect(confirmCardPaymentMock).toHaveBeenCalledWith('test-client-secret', {
+      payment_method: {
+        card: { mockCardElement: true },
+        billing_details: {
+          name: testData.name,
+          email: testData.email,
+          phone: testData.phone,
+          address: {
+            line1: testData.street,
+            line2: '',
+            city: testData.city,
+            state: testData.state,
+            postal_code: testData.zip,
+            country: testData.country,
+          },
+        },
+      },
+      shipping: {
+        name: testData.name,
+        phone: testData.phone,
+        address: {
+          line1: testData.street,
+          line2: '',
+          city: testData.city,
+          state: testData.state,
+          postal_code: testData.zip,
+          country: testData.country,
+        },
+      },
+    });
   });
 
   it('calls confirmCardPayment and clears cart on success', async () => {
@@ -117,9 +148,6 @@ describe('CheckoutForm', () => {
       expect(pushMock).toHaveBeenCalledWith('/');
     });
     expect(screen.getByPlaceholderText('Name')).toHaveTextContent('');
-    expect(screen.queryByPlaceholderText('Name')).not.toHaveTextContent(
-      'Joe Blow'
-    );
   });
 
   it('displays error message if payment fails', async () => {
@@ -159,5 +187,17 @@ describe('CheckoutForm', () => {
     });
 
     jest.useRealTimers();
+  });
+
+  it('updates address input values when user types', async () => {
+    render(<CheckoutForm />);
+
+    const cityInput = screen.getByPlaceholderText('City') as HTMLInputElement;
+    expect(cityInput.value).toBe('');
+
+    await userEvent.clear(cityInput);
+    await userEvent.type(cityInput, 'Los Angeles');
+
+    expect(cityInput.value).toBe('Los Angeles');
   });
 });

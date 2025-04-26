@@ -21,7 +21,7 @@ type FormData = {
   };
 };
 
-export default observer(function CheckoutForm() {
+const CheckoutForm: React.FC = observer(() => {
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
@@ -161,3 +161,5 @@ export default observer(function CheckoutForm() {
     </form>
   );
 });
+
+export default CheckoutForm;

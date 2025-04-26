@@ -1,11 +1,12 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import CheckoutAddressForm from './CheckoutAddressForm';
 
 describe('CheckoutAddressForm', () => {
   const mockHandleChange = jest.fn();
   const mockAddress = {
     line1: '123 Main St',
-    line2: 'Apt 69',
+    line2: 'Apt 16',
     city: 'San Diego',
     state: 'CA',
     postal_code: '90210',
@@ -35,7 +36,7 @@ describe('CheckoutAddressForm', () => {
     );
   });
 
-  it('calls handleChange when an input changes', () => {
+  it('calls handleChange with correct event when city input changes', async () => {
     render(
       <CheckoutAddressForm
         address={mockAddress}
@@ -44,8 +45,8 @@ describe('CheckoutAddressForm', () => {
     );
     const cityInput = screen.getByPlaceholderText('City');
 
-    fireEvent.change(cityInput, { target: { value: 'Los Angeles' } });
+    await userEvent.type(cityInput, 'Los Angeles');
 
-    expect(mockHandleChange).toHaveBeenCalledTimes(1);
+    expect(mockHandleChange).toHaveBeenCalledTimes('Los Angeles'.length);
   });
 });
