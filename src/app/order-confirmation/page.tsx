@@ -17,7 +17,7 @@ const OrderConfirmationPage = observer(() => {
     }
   }, [router, order]);
 
-  return !order ? null : (
+  return order ? (
     <div className="w-full max-w-[576px] mx-auto px-4 py-8 space-y-10">
       <div className="text-center mb-3">
         <h1 className="text-3xl font-semibold">Thank you for your order!</h1>
@@ -42,7 +42,7 @@ const OrderConfirmationPage = observer(() => {
         />
       </div>
     </div>
-  );
+  ) : null;
 });
 
 export default OrderConfirmationPage;
