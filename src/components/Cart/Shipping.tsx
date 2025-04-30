@@ -3,13 +3,9 @@
 import { cartStore } from '../../stores/cart-store';
 
 const Shipping: React.FC = () => {
-  const subtotal = cartStore.cartTotal;
+  const subtotal = cartStore.cartSubTotal;
 
-  let shippingCost = 0;
-
-  if (subtotal > 0 && subtotal < 150) {
-    shippingCost = 20;
-  }
+  const shippingCost = cartStore.shippingCost;
 
   return (
     <div className="flex justify-between text-sm mb-2">

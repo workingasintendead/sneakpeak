@@ -45,11 +45,7 @@ const ShoeCard: React.FC<ShoeCardProps> = observer(
     const [activePrice, setActivePrice] = useState<number>(prices[colors[0]]);
 
     useEffect(() => {
-      setActiveImageList(
-        Array.isArray(colorImages[activeColor])
-          ? colorImages[activeColor]
-          : [colorImages[activeColor]]
-      );
+      setActiveImageList(colorImages[activeColor]);
       setActivePrice(prices[activeColor]);
     }, [activeColor, colorImages, prices]);
 

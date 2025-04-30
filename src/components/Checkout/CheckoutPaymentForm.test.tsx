@@ -1,6 +1,15 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import CheckoutPaymentForm from './CheckoutPaymentForm';
-import { Stripe } from '@stripe/stripe-js';
+
+const mockGrandTotal = 100.0;
+
+jest.mock('../../stores/cart-store', () => ({
+  cartStore: {
+    get grandTotal() {
+      return mockGrandTotal;
+    },
+  },
+}));
 
 jest.mock('@stripe/react-stripe-js', () => ({
   CardElement: jest.fn(() => <div>CardElement</div>),
@@ -8,11 +17,9 @@ jest.mock('@stripe/react-stripe-js', () => ({
 
 describe('CheckoutPaymentForm', () => {
   const mockHandleSubmit = jest.fn();
-  const mockStripe: Stripe = {} as Stripe;
   const defaultProps = {
     loading: false,
-    stripe: mockStripe,
-    cartTotal: 100.0,
+    submitDisabled: false,
     handleSubmit: mockHandleSubmit,
   };
 
@@ -30,7 +37,11 @@ describe('CheckoutPaymentForm', () => {
     expect(button).toBeDisabled();
 
     render(
-      <CheckoutPaymentForm {...defaultProps} loading={false} stripe={null} />
+      <CheckoutPaymentForm
+        {...defaultProps}
+        loading={false}
+        submitDisabled={true}
+      />
     );
 
     expect(button).toBeDisabled();
@@ -54,7 +65,7 @@ describe('CheckoutPaymentForm', () => {
 
   it('does not call handleSubmit if stripe is not available', () => {
     jest.clearAllMocks();
-    render(<CheckoutPaymentForm {...defaultProps} stripe={null} />);
+    render(<CheckoutPaymentForm {...defaultProps} submitDisabled={true} />);
     const button = screen.getByRole('button');
 
     fireEvent.click(button);

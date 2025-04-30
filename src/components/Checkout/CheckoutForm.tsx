@@ -4,6 +4,7 @@ import CheckoutContactForm from './CheckoutContactForm';
 import CheckoutAddressForm from './CheckoutAddressForm';
 import CheckoutPaymentForm from './CheckoutPaymentForm';
 import { cartStore } from '../../stores/cart-store';
+import { orderStore } from '../../stores/order-store';
 import { observer } from 'mobx-react-lite';
 import { useRouter } from 'next/navigation';
 
@@ -83,7 +84,7 @@ const CheckoutForm: React.FC = observer(() => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          amount: cartStore.cartTotal * 100,
+          amount: cartStore.cartSubTotal * 100,
         }),
       });
 
@@ -117,8 +118,25 @@ const CheckoutForm: React.FC = observer(() => {
           result.error.message || 'Payment failed. Please try again.'
         );
       } else if (result.paymentIntent?.status === 'succeeded') {
+        const paymentType =
+          result.paymentIntent?.payment_method_types[0] || 'card';
+
+        orderStore.setOrder({
+          items: cartStore.getCartItems(),
+          subTotal: cartStore.cartSubTotal,
+          grandTotal: cartStore.grandTotal,
+          shipping: cartStore.shippingCost,
+          taxes: cartStore.taxEstimate,
+          estimatedTimeOfArrival: '3–5 business days',
+          customer: form,
+          payment: {
+            type: paymentType,
+          },
+          dateOfPurchase: new Date().toLocaleDateString(),
+        });
+
         cartStore.clearCart();
-        router.push('/');
+        router.push('/order-confirmation');
       } else {
         throw new Error('Unexpected payment result.');
       }
@@ -149,8 +167,7 @@ const CheckoutForm: React.FC = observer(() => {
       <CheckoutAddressForm address={form.address} handleChange={handleChange} />
       <CheckoutPaymentForm
         loading={loading}
-        stripe={stripe}
-        cartTotal={cartStore.cartTotal}
+        submitDisabled={!stripe}
         handleSubmit={handleSubmit}
       />
       {errorMessage && (

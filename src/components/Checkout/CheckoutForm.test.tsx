@@ -87,6 +87,10 @@ beforeAll(() => {
   ) as jest.Mock;
 });
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
 describe('CheckoutForm', () => {
   it('submits the form and triggers Stripe', async () => {
     confirmCardPaymentMock.mockResolvedValueOnce({
@@ -135,8 +139,12 @@ describe('CheckoutForm', () => {
 
   it('calls confirmCardPayment and clears cart on success', async () => {
     confirmCardPaymentMock.mockResolvedValueOnce({
-      paymentIntent: { status: 'succeeded' },
+      paymentIntent: {
+        status: 'succeeded',
+        payment_method_types: ['card'],
+      },
     });
+
     render(<CheckoutForm />);
 
     fillForm();
@@ -145,7 +153,7 @@ describe('CheckoutForm', () => {
 
     await waitFor(() => {
       expect(confirmCardPaymentMock).toHaveBeenCalledTimes(1);
-      expect(pushMock).toHaveBeenCalledWith('/');
+      expect(pushMock).toHaveBeenCalledWith('/order-confirmation');
     });
     expect(screen.getByPlaceholderText('Name')).toHaveTextContent('');
   });

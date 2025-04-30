@@ -1,19 +1,28 @@
 import { render, screen } from '@testing-library/react';
 import CartSummary from './CartSummary';
 
+let mockCartSubTotal = 0;
+
 jest.mock('../../stores/cart-store', () => ({
   cartStore: {
-    get cartTotal() {
-      return mockCartTotal;
+    get cartSubTotal() {
+      return mockCartSubTotal;
+    },
+    get shippingCost() {
+      return mockCartSubTotal > 0 && mockCartSubTotal < 150 ? 20 : 0;
+    },
+    get grandTotal() {
+      return (
+        mockCartSubTotal +
+        (mockCartSubTotal > 0 && mockCartSubTotal < 150 ? 20 : 0)
+      );
     },
   },
 }));
 
-let mockCartTotal = 0;
-
 describe('CartSummary', () => {
   it('displays zero subtotal and total when cart is empty', () => {
-    mockCartTotal = 0;
+    mockCartSubTotal = 0;
 
     render(<CartSummary />);
     expect(screen.getByText('Subtotal')).toBeInTheDocument();
@@ -25,7 +34,7 @@ describe('CartSummary', () => {
   });
 
   it('adds shipping when subtotal is below $150', () => {
-    mockCartTotal = 100;
+    mockCartSubTotal = 100;
 
     render(<CartSummary />);
 
@@ -37,7 +46,7 @@ describe('CartSummary', () => {
   });
 
   it('does not charge shipping when subtotal is $150 or more', () => {
-    mockCartTotal = 180;
+    mockCartSubTotal = 180;
 
     render(<CartSummary />);
     expect(screen.getByLabelText('subtotal-amount')).toHaveTextContent(

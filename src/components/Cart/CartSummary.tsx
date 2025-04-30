@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { observer } from 'mobx-react-lite';
 
 const CartSummary: React.FC = observer(() => {
-  const subtotal = cartStore.cartTotal;
+  const subtotal = cartStore.cartSubTotal;
   const shippingCost = subtotal > 0 && subtotal < 150 ? 20 : 0;
   const total = subtotal + shippingCost;
 
