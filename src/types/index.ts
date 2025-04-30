@@ -29,7 +29,7 @@ export type OrderData = {
   shipping: number;
   taxes: number;
   grandTotal: number;
-  eta: string;
+  estimatedTimeOfArrival: string;
   customer: {
     name: string;
     email: string;

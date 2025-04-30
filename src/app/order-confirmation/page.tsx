@@ -17,9 +17,7 @@ const OrderConfirmationPage = observer(() => {
     }
   }, [router, order]);
 
-  if (!order) return null;
-
-  return (
+  return !order ? null : (
     <div className="w-full max-w-[576px] mx-auto px-4 py-8 space-y-10">
       <div className="text-center mb-3">
         <h1 className="text-3xl font-semibold">Thank you for your order!</h1>
@@ -31,7 +29,7 @@ const OrderConfirmationPage = observer(() => {
       <div className="w-full mx-auto border rounded-lg p-4 lg:px-6 shadow-md space-y-8">
         <OrderSummary
           customer={order.customer}
-          eta={order.eta}
+          estimatedTimeOfArrival={order.estimatedTimeOfArrival}
           paymentType={order.payment.type}
           dateOfPurchase={order.dateOfPurchase}
         />

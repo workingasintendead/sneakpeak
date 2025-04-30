@@ -127,7 +127,7 @@ const CheckoutForm: React.FC = observer(() => {
           grandTotal: cartStore.grandTotal,
           shipping: cartStore.shippingCost,
           taxes: cartStore.taxEstimate,
-          eta: '3–5 business days',
+          estimatedTimeOfArrival: '3–5 business days',
           customer: form,
           payment: {
             type: paymentType,
@@ -167,7 +167,7 @@ const CheckoutForm: React.FC = observer(() => {
       <CheckoutAddressForm address={form.address} handleChange={handleChange} />
       <CheckoutPaymentForm
         loading={loading}
-        stripe={stripe}
+        submitDisabled={!stripe}
         handleSubmit={handleSubmit}
       />
       {errorMessage && (

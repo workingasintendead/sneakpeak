@@ -2,16 +2,15 @@ import { observer } from 'mobx-react-lite';
 import { cartStore } from '../../stores/cart-store';
 import { CardElement } from '@stripe/react-stripe-js';
 import LoadingSpinner from '../LoadingSpinner';
-import { Stripe } from '@stripe/stripe-js';
 
 type PaymentFormProps = {
   loading: boolean;
-  stripe: Stripe | null;
+  submitDisabled: boolean;
   handleSubmit: (e: React.FormEvent) => void;
 };
 
 const PaymentForm: React.FC<PaymentFormProps> = observer(
-  ({ loading, stripe, handleSubmit }) => {
+  ({ loading, submitDisabled, handleSubmit }) => {
     const total = cartStore.grandTotal;
 
     return (
@@ -35,7 +34,7 @@ const PaymentForm: React.FC<PaymentFormProps> = observer(
         />
         <button
           type="submit"
-          disabled={!stripe || loading}
+          disabled={submitDisabled || loading}
           className="w-full h-10 bg-black text-white py-2 rounded hover:bg-gray-900 transition cursor-pointer flex items-center justify-center"
           aria-label="Pay now button"
           onClick={handleSubmit}

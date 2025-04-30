@@ -15,7 +15,7 @@ const mockOrder = {
       country: 'US',
     },
   },
-  eta: '3-5 business days',
+  estimatedTimeOfArrival: '3-5 business days',
   payment: {
     type: 'card',
   },
@@ -27,7 +27,7 @@ describe('OrderSummary', () => {
     render(
       <OrderSummary
         customer={mockOrder.customer}
-        eta={mockOrder.eta}
+        estimatedTimeOfArrival={mockOrder.estimatedTimeOfArrival}
         paymentType={mockOrder.payment.type}
         dateOfPurchase={mockOrder.dateOfPurchase}
       />
@@ -57,7 +57,7 @@ describe('OrderSummary', () => {
     render(
       <OrderSummary
         customer={customerWithoutLine2.customer}
-        eta={mockOrder.eta}
+        estimatedTimeOfArrival={mockOrder.estimatedTimeOfArrival}
         paymentType={mockOrder.payment.type}
         dateOfPurchase={mockOrder.dateOfPurchase}
       />
@@ -66,11 +66,11 @@ describe('OrderSummary', () => {
     expect(screen.queryByText('Apt 4B')).not.toBeInTheDocument();
   });
 
-  it('renders estimated delivery (eta) correctly', () => {
+  it('renders estimated delivery (estimatedTimeOfArrival) correctly', () => {
     render(
       <OrderSummary
         customer={mockOrder.customer}
-        eta={mockOrder.eta}
+        estimatedTimeOfArrival={mockOrder.estimatedTimeOfArrival}
         paymentType={mockOrder.payment.type}
         dateOfPurchase={mockOrder.dateOfPurchase}
       />
@@ -83,7 +83,7 @@ describe('OrderSummary', () => {
     render(
       <OrderSummary
         customer={mockOrder.customer}
-        eta={mockOrder.eta}
+        estimatedTimeOfArrival={mockOrder.estimatedTimeOfArrival}
         paymentType={mockOrder.payment.type}
         dateOfPurchase={mockOrder.dateOfPurchase}
       />
@@ -96,7 +96,7 @@ describe('OrderSummary', () => {
     render(
       <OrderSummary
         customer={mockOrder.customer}
-        eta={mockOrder.eta}
+        estimatedTimeOfArrival={mockOrder.estimatedTimeOfArrival}
         paymentType={mockOrder.payment.type}
         dateOfPurchase={mockOrder.dateOfPurchase}
       />

@@ -2,14 +2,14 @@ import { OrderData } from '../../../types';
 
 interface Props {
   customer: OrderData['customer'];
-  eta: string;
+  estimatedTimeOfArrival: string;
   paymentType: string;
   dateOfPurchase: string;
 }
 
 const OrderSummary: React.FC<Props> = ({
   customer,
-  eta,
+  estimatedTimeOfArrival,
   paymentType,
   dateOfPurchase,
 }) => {
@@ -42,7 +42,7 @@ const OrderSummary: React.FC<Props> = ({
           </div>
           <div className="text-right">
             <p className="font-semibold text-base mb-1">Estimated delivery</p>
-            <p>{eta}</p>
+            <p>{estimatedTimeOfArrival}</p>
           </div>
         </div>
       </div>

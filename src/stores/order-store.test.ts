@@ -21,7 +21,7 @@ describe('OrderStore', () => {
     shipping: 20,
     taxes: 0,
     grandTotal: 300,
-    eta: '3-5 business days',
+    estimatedTimeOfArrival: '3-5 business days',
     customer: {
       name: 'Jane Doe',
       email: 'jane@example.com',
