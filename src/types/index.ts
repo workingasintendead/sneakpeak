@@ -22,3 +22,29 @@ export interface CartItem {
   selectedPrice: number;
   quantity: number;
 }
+
+export type OrderData = {
+  items: CartItem[];
+  subTotal: number;
+  shipping: number;
+  taxes: number;
+  grandTotal: number;
+  eta: string;
+  customer: {
+    name: string;
+    email: string;
+    phone: string;
+    address: {
+      line1: string;
+      line2?: string;
+      city: string;
+      state: string;
+      postal_code: string;
+      country: string;
+    };
+  };
+  payment: {
+    type: string;
+  };
+  dateOfPurchase: string;
+};

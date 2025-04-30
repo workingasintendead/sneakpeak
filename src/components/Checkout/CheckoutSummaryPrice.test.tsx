@@ -1,21 +1,33 @@
 import { render, screen } from '@testing-library/react';
 import CheckoutSummaryPrice from './CheckoutSummaryPrice';
 
+let mockCartSubTotal = 0;
+
 jest.mock('../../stores/cart-store', () => {
   return {
     cartStore: {
-      get cartTotal() {
-        return mockCartTotal;
+      get cartSubTotal() {
+        return mockCartSubTotal;
+      },
+      get shippingCost() {
+        return mockCartSubTotal > 0 && mockCartSubTotal < 150 ? 20 : 0;
+      },
+      get taxEstimate() {
+        return 0;
+      },
+      get grandTotal() {
+        return (
+          mockCartSubTotal +
+          (mockCartSubTotal > 0 && mockCartSubTotal < 150 ? 20 : 0)
+        );
       },
     },
   };
 });
 
-let mockCartTotal = 0;
-
 describe('CheckoutSummaryPrice', () => {
   it('renders with free shipping when subtotal is 0', () => {
-    mockCartTotal = 0;
+    mockCartSubTotal = 0;
     render(<CheckoutSummaryPrice />);
 
     expect(screen.queryByText('$100.00')).not.toBeInTheDocument();
@@ -25,7 +37,7 @@ describe('CheckoutSummaryPrice', () => {
   });
 
   it('renders $20 shipping when subtotal is greater than 0, but less than 150', () => {
-    mockCartTotal = 100;
+    mockCartSubTotal = 100;
     render(<CheckoutSummaryPrice />);
 
     expect(screen.getByText('$100.00')).toBeInTheDocument();
@@ -37,7 +49,7 @@ describe('CheckoutSummaryPrice', () => {
   });
 
   it('renders free shipping and savings when subtotal is 150 or more', () => {
-    mockCartTotal = 200;
+    mockCartSubTotal = 200;
     render(<CheckoutSummaryPrice />);
 
     expect(screen.getAllByText('$200.00')).toHaveLength(2);

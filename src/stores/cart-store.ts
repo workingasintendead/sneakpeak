@@ -57,11 +57,24 @@ export class CartStore {
     return this.cart.reduce((sum, cartItem) => sum + cartItem.quantity, 0);
   }
 
-  get cartTotal(): number {
+  get cartSubTotal(): number {
     return this.cart.reduce(
       (sum, cartItem) => sum + cartItem.selectedPrice * cartItem.quantity,
       0
     );
+  }
+
+  get shippingCost(): number {
+    const subtotal = this.cartSubTotal;
+    return subtotal > 0 && subtotal < 150 ? 20 : 0;
+  }
+
+  get taxEstimate(): number {
+    return 0;
+  }
+
+  get grandTotal(): number {
+    return this.cartSubTotal + this.shippingCost + this.taxEstimate;
   }
 
   openDrawer() {

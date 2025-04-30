@@ -9,7 +9,7 @@ const CartDrawer: React.FC = observer(() => {
   const isOpen = cartStore.drawerOpen;
   const closeDrawer = () => cartStore.closeDrawer();
   const items = cartStore.getCartItems();
-  const subtotal = cartStore.cartTotal;
+  const subtotal = cartStore.cartSubTotal;
 
   return (
     <>

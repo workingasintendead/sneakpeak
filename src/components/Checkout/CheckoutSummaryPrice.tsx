@@ -4,10 +4,10 @@ import { observer } from 'mobx-react-lite';
 import { cartStore } from '../../stores/cart-store';
 
 const CheckoutSummaryPrice: React.FC = observer(() => {
-  const subtotal = cartStore.cartTotal;
-  const shippingCost = subtotal > 0 && subtotal < 150 ? 20 : 0;
-  const taxes = 0;
-  const total = subtotal + shippingCost + taxes;
+  const subtotal = cartStore.cartSubTotal;
+  const shippingCost = cartStore.shippingCost;
+  const taxes = cartStore.taxEstimate;
+  const total = cartStore.grandTotal;
   const savings = shippingCost > 0 ? 0 : 20.0;
 
   return (
@@ -29,7 +29,7 @@ const CheckoutSummaryPrice: React.FC = observer(() => {
         <span>Estimated taxes</span>
         <span>${taxes.toFixed(2)}</span>
       </div>
-      <div className="flex justify-between font-semibold text-base border-t pt-3 mb-1">
+      <div className="flex justify-between font-semibold text-base border-t pt-3">
         <span>Total</span>
         <span>${total.toFixed(2)}</span>
       </div>

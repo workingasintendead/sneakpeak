@@ -2,6 +2,16 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import CheckoutPaymentForm from './CheckoutPaymentForm';
 import { Stripe } from '@stripe/stripe-js';
 
+const mockGrandTotal = 100.0;
+
+jest.mock('../../stores/cart-store', () => ({
+  cartStore: {
+    get grandTotal() {
+      return mockGrandTotal;
+    },
+  },
+}));
+
 jest.mock('@stripe/react-stripe-js', () => ({
   CardElement: jest.fn(() => <div>CardElement</div>),
 }));
@@ -12,7 +22,6 @@ describe('CheckoutPaymentForm', () => {
   const defaultProps = {
     loading: false,
     stripe: mockStripe,
-    cartTotal: 100.0,
     handleSubmit: mockHandleSubmit,
   };
 
